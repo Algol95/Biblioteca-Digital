@@ -17,7 +17,7 @@
 
 <body>
     <header>
-        <button class="header__burger-open">Menú</button>
+        <button class="header__burger-open" id="burger-open" onclick="openMenu()"><i class="bi bi-list"></i></button>
         <h4 class="header__title"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                 class="lucide lucide-library h-6 w-6 header__title-icon">
@@ -35,73 +35,76 @@
         </div>
         <i class="bi bi-brightness-high header__theme-toggle"></i>
     </header>
-        <aside class="sidebar">
-            <button class="sidebar__burger-close">Cerrar</button>
-            <nav class="sidebar__nav">
-                <p class="sidebar__title">Categorías</p>
-                <ul class="sidebar__list">
-                    <li class="sidebar__item">Todos</li>
-                    <li class="sidebar__item">Ficción</li>
-                    <li class="sidebar__item">Fantasía</li>
-                    <li class="sidebar__item">Thriller</li>
-                    <li class="sidebar__item">Clásicos</li>
-                    <li class="sidebar__item">Poesía</li>
-                    <li class="sidebar__item">Historia</li>
-                </ul>
-            </nav>
-        </aside>
-        <main>
-            <section class="books" id="books">
-                <article class="books__card">
-                    <img src="./src/images/cien_anos_de_soledad-cover.jpg" alt="Portada cien años de soledad" class="books__card__img">
-                    <div class="books__card__body">
-                        <h5>Cien Años de Soledad</h5>
-                        <p class="books__card__body__txt">Gabriel García Márquez</p>
-                        <button class="books__card__body__btn btn"><i class="bi bi-book"></i> Leer Ahora</button>
-                    </div>
-                </article>
-                <article class="books__card">
-                    <img src="./src/images/cien_anos_de_soledad-cover.jpg" alt="Portada cien años de soledad" class="books__card__img">
-                    <div class="books__card__body">
-                        <h5>Cien Años de Soledad</h5>
-                        <p class="books__card__body__txt">Gabriel García Márquez</p>
-                        <button class="books__card__body__btn btn"><i class="bi bi-book"></i> Leer Ahora</button>
-                    </div>
-                </article>
-                <article class="books__card">
-                    <img src="./src/images/cien_anos_de_soledad-cover.jpg" alt="Portada cien años de soledad" class="books__card__img">
-                    <div class="books__card__body">
-                        <h5>Cien Años de Soledad</h5>
-                        <p class="books__card__body__txt">Gabriel García Márquez</p>
-                        <button class="books__card__body__btn btn"><i class="bi bi-book"></i> Leer Ahora</button>
-                    </div>
-                </article>
-                <article class="books__card">
-                    <img src="./src/images/cien_anos_de_soledad-cover.jpg" alt="Portada cien años de soledad" class="books__card__img">
-                    <div class="books__card__body">
-                        <h5>Cien Años de Soledad</h5>
-                        <p class="books__card__body__txt">Gabriel García Márquez</p>
-                        <button class="books__card__body__btn btn"><i class="bi bi-book"></i> Leer Ahora</button>
-                    </div>
-                </article>
-            </section>
-        </main>
-        <footer>
-            <p>Ángel Aragón</p>
-            <div class="footer__logo">
-                <h4 class="footer__title"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
-                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="lucide lucide-library h-6 w-6 footer__title-icon">
-                    <path d="m16 6 4 14"></path>
-                    <path d="M12 6v14"></path>
-                    <path d="M8 8v12"></path>
-                    <path d="M4 4v16"></path>
-                </svg>Biblioteca Digital</h4>
-                <p>© Factoría F5 - Todos los derechos reservados.</p>
-            </div>
-            <p>Nico Fernández</p>
-        </footer>
+    <aside class="sidebar">
+        <button class="sidebar__burger-close" id="burger-close" onclick="closeMenu()"><i
+                class="bi bi-x-lg"></i></button>
+        <nav class="sidebar__nav">
+            <p class="sidebar__title">Categorías</p>
+            <ul class="sidebar__list">
+                <li class="sidebar__item">Todos</li>
+                <li class="sidebar__item">Ficción</li>
+                <li class="sidebar__item">Fantasía</li>
+                <li class="sidebar__item">Thriller</li>
+                <li class="sidebar__item">Clásicos</li>
+                <li class="sidebar__item">Poesía</li>
+                <li class="sidebar__item">Historia</li>
+            </ul>
+        </nav>
+    </aside>
+    <main>
+        <section class="books" id="books">
+            <article class="books__card">
+                <img src="./src/images/cien_anos_de_soledad-cover.jpg" alt="Portada cien años de soledad"
+                    class="books__card__img">
+                <div class="books__card__body">
+                    <h5>Cien Años de Soledad</h5>
+                    <p class="books__card__body__txt">Gabriel García Márquez</p>
+                    <button class="books__card__body__btn btn"><i class="bi bi-book"></i> Leer Ahora</button>
+                </div>
+            </article>
+            <article class="books__card">
+                <img src="./src/images/cien_anos_de_soledad-cover.jpg" alt="Portada cien años de soledad"
+                    class="books__card__img">
+                <div class="books__card__body">
+                    <h5>Cien Años de Soledad</h5>
+                    <p class="books__card__body__txt">Gabriel García Márquez</p>
+                    <button class="books__card__body__btn btn"><i class="bi bi-book"></i> Leer Ahora</button>
+                </div>
+            </article>
+            <article class="books__card">
+                <img src="./src/images/cien_anos_de_soledad-cover.jpg" alt="Portada cien años de soledad"
+                    class="books__card__img">
+                <div class="books__card__body">
+                    <h5>Cien Años de Soledad</h5>
+                    <p class="books__card__body__txt">Gabriel García Márquez</p>
+                    <button class="books__card__body__btn btn"><i class="bi bi-book"></i> Leer Ahora</button>
+                </div>
+            </article>
+            <article class="books__card">
+                <img src="./src/images/cien_anos_de_soledad-cover.jpg" alt="Portada cien años de soledad"
+                    class="books__card__img">
+                <div class="books__card__body">
+                    <h5>Cien Años de Soledad</h5>
+                    <p class="books__card__body__txt">Gabriel García Márquez</p>
+                    <button class="books__card__body__btn btn"><i class="bi bi-book"></i> Leer Ahora</button>
+                </div>
+            </article>
+        </section>
+    </main>
+    <footer>
 
+        <h4 class="footer__title"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-library h-6 w-6 footer__title-icon">
+                <path d="m16 6 4 14"></path>
+                <path d="M12 6v14"></path>
+                <path d="M8 8v12"></path>
+                <path d="M4 4v16"></path>
+            </svg>Biblioteca Digital</h4>
+        <p>© Factoría F5 - Todos los derechos reservados.</p>
+        <p>Desarrollado por Ángel Aragón y Nico Fernández</p>
+    </footer>
+    <script src="./src/burger-menu.js"></script>
 </body>
 
 </html>

@@ -14,17 +14,20 @@
     color: var(--color-primary);
 }
 
-
+body.no-scroll {
+    overflow: hidden;
+}
 
 /*---------------HEADER STYLES---------------*/
 
 header {
-    z-index: 999;
+    z-index: 99;
     display: flex;
     align-items: center;
-    height: 80px;
+    justify-content: space-between;
+    height: 5rem;
     width: 100%;
-    padding: 0 30px;
+    padding: 0 1.5rem;
     border-bottom: 1px solid var(--color-border);
     position: fixed;
     background-color: var(--color-background);
@@ -32,53 +35,59 @@ header {
 
 .header__title {
     display: flex;
+    width: 15%;
     align-items: center;
-    width: 250px;
-    margin-right: 5%;
     margin-block-end: 0;
 }
 
 .header__title-icon {
-    margin-right: 10px;
+    margin-right: .4rem;
 }
 
 .header__search { /* TODO: Cambiar color del borde */
     height: 60%;
-    width: 70%;
-    margin-right: 3%;
+    width: 80%;
 }
 
 .header__search-input {
-    width: 80%;
+    width: 50%;
     margin-right: 0.5%;
-    padding: 10px;
+    margin-left: 1rem;
+    padding: .6rem;
 }
 
 .header__search-addon {
     background-color: transparent;
-    font-size: 20px;
+    font-size: 1.4rem;
     cursor: pointer;
     width: 9%;
 }
 
 
 .header__theme-toggle {
-    font-size: 24px;
+    font-size: 1.4rem;
     cursor: pointer;
 }
 
-
+.header__burger-open {
+    background: transparent;
+    font-size: 2.5rem;
+    display: none;
+    border: none;
+    width: 4rem;
+    height: 4rem;
+}
 
 /*---------------SIDEBAR STYLES---------------*/
 
 .sidebar {
     display: flex;
     flex-direction: column;
-    padding-left: 30px;
+    padding-left: 1.5rem;
     position: fixed;
-    padding-top: 120px;
+    padding-top: 7rem;
     border-right: 1px solid var(--color-border);
-    width: 290px;
+    width: 18.13rem;
     height: 100%;
     background-color: var(--color-background);
 }
@@ -88,8 +97,8 @@ header {
 }
 
 .sidebar__title {
-    font-size: 23px;
-    margin-bottom: 5px;
+    font-size: 1.3rem;
+    margin-bottom: .3rem;
     font-weight: 500;
 }
 
@@ -107,13 +116,20 @@ header {
     font-weight: 500;
 }
 
+.sidebar__burger-close {
+    font-size: 2rem;
+    display: none;
+    border: none;
+    background: transparent;
+    width: 2.5rem;
+}
 
 
 /*---------------MAIN STYLES---------------*/
 
 main {
     z-index: -9999;
-    padding: 80px 0 150px 290px;
+    padding: 7rem 0 8rem 18.13rem;
     width: 100%;
 }
 
@@ -121,13 +137,14 @@ main {
 /*---------------FOOTER STYLES---------------*/
 
 footer {
-    min-height: 100px;
+    min-height: 6.3rem;
     width: 100%;
-    padding: 20px 30px;
+    padding: 1.25rem 1.87rem;
     background-color: var(--color-background);
     position: fixed;
     bottom: 0;
     display: flex;
+    flex-direction: column;
     margin-top: auto;
     align-items: center;
     justify-content: center;
@@ -138,19 +155,77 @@ footer {
 
 footer p {
     margin-block-end: 0;
-    font-size: 20px;
+    font-size: 1.25rem;
     font-weight: 200;
 }
 
-.footer__logo {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
+
 
 .footer__title{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+@media (max-width: 767px) {
+    header{
+        justify-content: start;
+    }
+    .header__title{
+        width: 100%;
+        margin-left: .5rem;
+    }
+    .header__burger-open{
+        display: block;
+    }
+    .header__search{
+        display: none;
+    }
+    .header__theme-toggle{
+        display: none;
+    }
+
+    .overlay {
+        opacity: 0;
+        position: fixed;
+        height: 100%;
+        width: 100%;
+        background-color: rgb(0, 0, 0, 0.8);
+        z-index: 999;
+        transition: all .3s ease-in-out;
+    }
+    .overlay.active{
+        display: block;
+        opacity: 1;
+    }
+
+    .sidebar {
+        padding-top: 1rem;
+        padding-left: 2rem;
+        z-index: 9999;
+        transition: .5s ease;
+        transform: translateX(-100%);
+        
+    }
+    .sidebar.active {
+        display: flex;
+        transform: translateX(0%);
+    }
+    .sidebar__burger-close {
+        display: block;
+    }
+
+    main {
+        padding-left: 0;
+        padding-bottom: 2.1rem;
+    }
+
+    footer{
+        position: unset;
+    }
+
+    footer p{
+
+        font-size: 1.2rem;
+    }
 }
