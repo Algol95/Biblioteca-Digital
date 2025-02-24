@@ -2,4 +2,21 @@
     font-family: "Geist", serif;
     font-weight: 300;
     font-style: normal;
+    box-sizing: border-box;
+}
+
+header {
+    display: flex;
+    align-items:  center;
+    height: 80px;
+
+}
+
+h4 {
+    width: 250px;
+}
+
+.input-group{
+    height: 60%;
+    width: 40%;
 }
