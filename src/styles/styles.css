@@ -92,6 +92,20 @@ header {
     background-color: var(--color-background);
 }
 
+.sidebar__search{
+display: none;
+margin: 1.4rem 0;
+}
+
+.sidebar__search-input{
+    height: 3rem;
+}
+
+.sidebar__search-addon{
+    background: transparent;
+    font-size: 1.3rem;
+}
+
 .sidebar__nav {
     flex-grow: 1;
 }
@@ -213,6 +227,9 @@ footer p {
     }
     .sidebar__burger-close {
         display: block;
+    }
+    .sidebar__search{
+        display: flex;
     }
 
     main {

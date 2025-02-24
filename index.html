@@ -38,6 +38,13 @@
     <aside class="sidebar">
         <button class="sidebar__burger-close" id="burger-close" onclick="closeMenu()"><i
                 class="bi bi-x-lg"></i></button>
+        <div class="input-group rounded sidebar__search">
+            <input type="search" class="rounded sidebar__search-input" placeholder="Buscar libros..."
+                aria-label="Buscar Libros..." aria-describedby="search-addon" />
+            <span class="input-group-text border-0 sidebar__search-addon" id="search-addon">
+                <i class="bi bi-search sidebar__search-icon"></i>
+            </span>
+        </div>
         <nav class="sidebar__nav">
             <p class="sidebar__title">Categorías</p>
             <ul class="sidebar__list">
