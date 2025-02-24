@@ -1,0 +1,46 @@
+/*----------- BODY & ELEMENTS --------*/
+
+.books{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    margin: 0 1rem;
+    gap: 1rem;
+}
+
+.books__card{
+    width: 320px;
+    height: 460px;
+    border-radius: 1rem;
+    border: 1px solid var(--color-border);
+    gap: .5rem;
+    box-shadow: 0 0 5px 1px rgba(105, 105, 105, 0.5);
+}
+
+.books__card__img{
+    width: 100%;
+    height: 300px;
+    padding: .5rem;
+    object-fit: cover;
+    object-position: 0 0;
+    border-radius: 1rem;
+}
+
+.books__card__body{
+    margin: 2rem 1rem;
+}
+
+.books__card__body__btn{
+    width: 100%;
+    background-color: var(--color-primary);
+    color: var(--color-background);
+    border-radius: .5rem;
+}
+
+.books__card__body__btn:hover{
+    background-color: var(--color-tertiary);
+    color: var(--color-background);
+}
+
+.books__card__body__txt{
+    color: var(--color-secondary);
+}
