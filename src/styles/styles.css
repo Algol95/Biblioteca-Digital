@@ -19,6 +19,7 @@
 /*---------------HEADER STYLES---------------*/
 
 header {
+    z-index: 999;
     display: flex;
     align-items: center;
     height: 80px;
@@ -43,12 +44,12 @@ header {
 
 .header__search { /* TODO: Cambiar color del borde */
     height: 60%;
-    width: 50%;
-    margin-right: 30%;
+    width: 70%;
+    margin-right: 3%;
 }
 
 .header__search-input {
-    width: 90%;
+    width: 80%;
     margin-right: 0.5%;
     padding: 10px;
 }
@@ -75,7 +76,6 @@ header {
     flex-direction: column;
     padding-left: 30px;
     position: fixed;
-    z-index: -999;
     padding-top: 120px;
     border-right: 1px solid var(--color-border);
     width: 290px;
@@ -112,7 +112,8 @@ header {
 /*---------------MAIN STYLES---------------*/
 
 main {
-    padding: 80px 0 100px 290px;
+    z-index: -9999;
+    padding: 80px 0 150px 290px;
     width: 100%;
 }
 

@@ -1,10 +1,14 @@
 /*----------- BODY & ELEMENTS --------*/
+body {
+    width: 100%;
+}
 
 .books{
+    padding: 1.3rem;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    margin: 0 1rem;
     gap: 1rem;
+    justify-items: center;
 }
 
 .books__card{
