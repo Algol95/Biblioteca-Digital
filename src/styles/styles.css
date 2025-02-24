@@ -1,6 +1,7 @@
 :root {
     --color-primary: #101422; /* Fondo oscuro o texto principal */
     --color-secondary: #98A0AF; /* Texto secundario o detalles */
+    --color-tertiary: #283255; /*Hover botones*/
     --color-border: #BBBBBB; /* Bordes y separadores */
     --color-background: #FFFFFF; /* Fondo claro */
 }
