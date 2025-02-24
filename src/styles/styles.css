@@ -1,5 +1,5 @@
 :root {
-    --color-primary: #22101a; /* Fondo oscuro o texto principal */
+    --color-primary: #101422; /* Fondo oscuro o texto principal */
     --color-secondary: #98A0AF; /* Texto secundario o detalles */
     --color-tertiary: #283255; /*Hover botones*/
     --color-border: #BBBBBB; /* Bordes y separadores */
@@ -16,8 +16,7 @@
 
 
 
-
-/* Header Styles */
+/*---------------HEADER STYLES---------------*/
 
 header {
     display: flex;
@@ -69,7 +68,7 @@ header {
 
 
 
-/*Sidebar Styles*/
+/*---------------SIDEBAR STYLES---------------*/
 
 .sidebar {
     display: flex;
@@ -110,9 +109,15 @@ header {
 
 
 
+/*---------------MAIN STYLES---------------*/
+
 main {
     padding: 80px 0 100px 290px;
+    width: 100%;
 }
+
+
+/*---------------FOOTER STYLES---------------*/
 
 footer {
     min-height: 100px;

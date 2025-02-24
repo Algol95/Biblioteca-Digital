@@ -36,6 +36,10 @@
     border-radius: .5rem;
 }
 
+.books__card__body__btn i {
+    color: var(--color-background);
+}
+
 .books__card__body__btn:hover{
     background-color: var(--color-tertiary);
     color: var(--color-background);
