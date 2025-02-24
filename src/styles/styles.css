@@ -10,7 +10,7 @@ header {
     align-items:  center;
     height: 80px;
     width: 100%;
-    padding: 0 20px;
+    padding: 0 30px;
     border-bottom: 1px solid #BBBBBB;
     position: fixed;
     background-color: white;
@@ -44,6 +44,7 @@ header {
     background-color: transparent;
     font-size: 20px;
     cursor: pointer;
+    width: 9%;
 }
 
 
@@ -52,11 +53,33 @@ header {
     cursor: pointer;
 }
 
-aside {
+.sidebar {
+    display: flex;
+    padding-left:30px;
     position: fixed;
     z-index: -999;
-    padding-top: 80px;
+    padding-top: 120px;
     border-right: 1px solid #BBBBBB;
     width: 290px;
     height: 100vh;
+}
+
+.sidebar__title {
+    font-size: 23px;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.sidebar__list {
+    list-style: none;
+    padding-left: 20px;
+    font-size: 19px;
+}
+
+.sidebar__item {
+    cursor: pointer;
+}
+
+.sidebar__item:hover {
+    font-weight: 500;
 }
