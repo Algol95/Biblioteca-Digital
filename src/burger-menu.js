@@ -8,9 +8,7 @@ function openMenu(){
     const overlay = document.querySelector(".overlay");
     body.classList.add("no-scroll")
     setTimeout(()=> overlay.classList.add("active") , 10)
-    
-
-}
+    }
 
 function closeMenu(){
     sidebar.classList.remove("active")
