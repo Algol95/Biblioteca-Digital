@@ -48,54 +48,18 @@
         <nav class="sidebar__nav">
             <p class="sidebar__title">Categorías</p>
             <ul class="sidebar__list">
-                <li class="sidebar__item">Todos</li>
-                <li class="sidebar__item">Ficción</li>
-                <li class="sidebar__item">Fantasía</li>
-                <li class="sidebar__item">Thriller</li>
-                <li class="sidebar__item">Clásicos</li>
-                <li class="sidebar__item">Poesía</li>
-                <li class="sidebar__item">Historia</li>
+                <li class="sidebar__item" onclick="printGrid('all')">Todos</li>
+                <li class="sidebar__item" onclick="printGrid('fiction')">Ficción</li>
+                <li class="sidebar__item" onclick="printGrid('fantasy')">Fantasía</li>
+                <li class="sidebar__item" onclick="printGrid('thriller')">Thriller</li>
+                <li class="sidebar__item" onclick="printGrid('classics')">Clásicos</li>
+                <li class="sidebar__item" onclick="printGrid('poetry')">Poesía</li>
+                <li class="sidebar__item" onclick="printGrid('history')">Historia</li>
             </ul>
         </nav>
     </aside>
     <main>
-        <section class="books" id="books">
-            <article class="books__card">
-                <img src="./src/images/cien_anos_de_soledad-cover.jpg" alt="Portada cien años de soledad"
-                    class="books__card__img">
-                <div class="books__card__body">
-                    <h5>Cien Años de Soledad</h5>
-                    <p class="books__card__body__txt">Gabriel García Márquez</p>
-                    <button class="books__card__body__btn btn"><i class="bi bi-book"></i> Leer Ahora</button>
-                </div>
-            </article>
-            <article class="books__card">
-                <img src="./src/images/cien_anos_de_soledad-cover.jpg" alt="Portada cien años de soledad"
-                    class="books__card__img">
-                <div class="books__card__body">
-                    <h5>Cien Años de Soledad</h5>
-                    <p class="books__card__body__txt">Gabriel García Márquez</p>
-                    <button class="books__card__body__btn btn"><i class="bi bi-book"></i> Leer Ahora</button>
-                </div>
-            </article>
-            <article class="books__card">
-                <img src="./src/images/cien_anos_de_soledad-cover.jpg" alt="Portada cien años de soledad"
-                    class="books__card__img">
-                <div class="books__card__body">
-                    <h5>Cien Años de Soledad</h5>
-                    <p class="books__card__body__txt">Gabriel García Márquez</p>
-                    <button class="books__card__body__btn btn"><i class="bi bi-book"></i> Leer Ahora</button>
-                </div>
-            </article>
-            <article class="books__card">
-                <img src="./src/images/cien_anos_de_soledad-cover.jpg" alt="Portada cien años de soledad"
-                    class="books__card__img">
-                <div class="books__card__body">
-                    <h5>Cien Años de Soledad</h5>
-                    <p class="books__card__body__txt">Gabriel García Márquez</p>
-                    <button class="books__card__body__btn btn"><i class="bi bi-book"></i> Leer Ahora</button>
-                </div>
-            </article>
+        <section class="books" id="books-grid">
         </section>
     </main>
     <footer>
@@ -112,6 +76,7 @@
         <p>Desarrollado por Ángel Aragón y Nico Fernández</p>
     </footer>
     <script src="./src/js/burger-menu.js"></script>
+    <script src="./src/js/print-index.js"></script>
 </body>
 
 </html>
