@@ -195,9 +195,6 @@ footer p {
     .header__search{
         display: none;
     }
-    .header__theme-toggle{
-        display: none;
-    }
 
     .overlay {
         opacity: 0;
