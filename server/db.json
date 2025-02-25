@@ -1,10 +1,60 @@
 {
-    "books":[
+    "books": [
         {
             "id": 1,
             "title": "Cien años de soledad",
-            "autor": "Gabriel García Marquez",
-            "category": ""
+            "author": "Gabriel García Marquez",
+            "category": "fiction",
+            "synopsis": "Una novela emblemática de la literatura latinoamericana."
+        },
+        {
+            "id": 2,
+            "title": "1984",
+            "author": "George Orwell",
+            "category": "fiction",
+            "synopsis": "Una distopía política que examina el totalitarismo."
+        },
+        {
+            "id": 3,
+            "title": "Don Quixote",
+            "author": "Miguel de Cervantes",
+            "category": "classics",
+            "synopsis": "La historia de un caballero y su fiel escudero."
+        },
+        {
+            "id": 4,
+            "title": "The Great Gatsby",
+            "author": "F. Scott Fitzgerald",
+            "category": "classics",
+            "synopsis": "Una novela sobre la vida en la década de 1920."
+        },
+        {
+            "id": 5,
+            "title": "The Shining",
+            "author": "Stephen King",
+            "category": "thriller",
+            "synopsis": "Un thriller psicológico sobre un hombre y su familia atrapados en un hotel aislado."
+        },
+        {
+            "id": 6,
+            "title": "Harry Potter and the Sorcerer's Stone",
+            "author": "J.K. Rowling",
+            "category": "fantasy",
+            "synopsis": "La primera entrega de la famosa serie de fantasía."
+        },
+        {
+            "id": 7,
+            "title": "The Odyssey",
+            "author": "Homer",
+            "category": "history",
+            "synopsis": "La épica historia de la vuelta a casa de Odiseo."
+        },
+        {
+            "id": 8,
+            "title": "Leaves of Grass",
+            "author": "Walt Whitman",
+            "category": "poetry",
+            "synopsis": "Una famosa obra poética que celebra la individualidad y la naturaleza."
         }
     ]
 }
