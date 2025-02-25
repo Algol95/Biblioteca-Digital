@@ -115,7 +115,7 @@
           </button>
         </div>
 
-        <table class="table table-striped table-hover table-responsive">
+        <table class="table table-striped table-hover table-responsive" id="tableBooks">
           <thead class="">
             <tr>
               <th>ID</th>
@@ -168,88 +168,6 @@
                 </button>
               </td>
             </tr>
-            <tr>
-                <td>
-                  <button
-                    class="btn btn-outline-primary"
-                    class="btn btn-success"
-                    data-bs-toggle="popover"
-                    data-bs-trigger="hover focus"
-                    data-bs-title="Visualizar libro"
-                    data-bs-content="Abre una ventana modal para visualizar todos los datos de este libro."
-                  >
-                    1
-                  </button>
-                </td>
-                <td>Cien años de soledad</td>
-                <td>Gabriel García Marquez</td>
-                <td>Novela</td>
-                <td class="d-grid gap-2 d-md-block">
-                  <button
-                    class="btn btn-primary"
-                    class="btn btn-success"
-                    data-bs-toggle="popover"
-                    data-bs-placement="left"
-                    data-bs-trigger="hover focus"
-                    data-bs-title="Editar libro"
-                    data-bs-content="Abre una ventana modal para editar este libro."
-                  >
-                    <i class="bi bi-pencil-square text-light"></i>
-                  </button>
-                  <button
-                    class="btn btn-danger"
-                    class="btn btn-success"
-                    data-bs-toggle="popover"
-                    data-bs-placement="left"
-                    data-bs-trigger="hover focus"
-                    data-bs-title="Borrar libro"
-                    data-bs-content="Abre una ventana modal para borrar este libro de la base de datos."
-                  >
-                    <i class="bi bi-trash text-light"></i>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <button
-                    class="btn btn-outline-primary"
-                    class="btn btn-success"
-                    data-bs-toggle="popover"
-                    data-bs-trigger="hover focus"
-                    data-bs-title="Visualizar libro"
-                    data-bs-content="Abre una ventana modal para visualizar todos los datos de este libro."
-                  >
-                    1
-                  </button>
-                </td>
-                <td>Cien años de soledad</td>
-                <td>Gabriel García Marquez</td>
-                <td>Novela</td>
-                <td class="d-grid gap-2 d-md-block">
-                  <button
-                    class="btn btn-primary"
-                    class="btn btn-success"
-                    data-bs-toggle="popover"
-                    data-bs-placement="left"
-                    data-bs-trigger="hover focus"
-                    data-bs-title="Editar libro"
-                    data-bs-content="Abre una ventana modal para editar este libro."
-                  >
-                    <i class="bi bi-pencil-square text-light"></i>
-                  </button>
-                  <button
-                    class="btn btn-danger"
-                    class="btn btn-success"
-                    data-bs-toggle="popover"
-                    data-bs-placement="left"
-                    data-bs-trigger="hover focus"
-                    data-bs-title="Borrar libro"
-                    data-bs-content="Abre una ventana modal para borrar este libro de la base de datos."
-                  >
-                    <i class="bi bi-trash text-light"></i>
-                  </button>
-                </td>
-              </tr>
           </tbody>
         </table>
       </section>
@@ -271,8 +189,9 @@
           <path d="m16 6 4 14"></path>
           <path d="M12 6v14"></path>
           <path d="M8 8v12"></path>
-          <path d="M4 4v16"></path></svg
-        >Biblioteca Digital
+          <path d="M4 4v16"></path>
+        </svg>
+          Biblioteca Digital
       </h4>
       <p>© Factoría F5 - Todos los derechos reservados.</p>
       <p>Desarrollado por Ángel Aragón y Nico Fernández</p>
@@ -287,6 +206,7 @@
       integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
       crossorigin="anonymous"
     ></script>
+    <script src="../utils/print-index.js"></script>
     <script src="../utils/burger-menu.js"></script>
     <script src="../utils/popover.js"></script>
   </body>

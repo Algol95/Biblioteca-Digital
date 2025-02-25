@@ -1,5 +1,26 @@
+
+
+/**
+ * Dirección URL de la API
+ *
+ * @type {"http://localhost:3000/books"}
+ */
 const API_URL = "http://localhost:3000/books";
+
+/**
+ * Description placeholder
+ *
+ * @type {*}
+ */
 const grid = document.querySelector("#books-grid")
+
+
+/**
+ * Description placeholder
+ *
+ * @type {*}
+ */
+const tableBooks = document.getElementById("tableBooks");
 //----------------GET FUNCTION----------------//
 
 
@@ -78,3 +99,7 @@ async function printGrid(category) {
 }
 
 printGrid("all")
+
+async function printAllAdminMenu(){
+
+}
