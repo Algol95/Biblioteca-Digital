@@ -48,13 +48,13 @@
         <nav class="sidebar__nav">
             <p class="sidebar__title">Categorías</p>
             <ul class="sidebar__list">
-                <li class="sidebar__item" onclick="printGrid('all')">Todos</li>
-                <li class="sidebar__item" onclick="printGrid('fiction')">Ficción</li>
-                <li class="sidebar__item" onclick="printGrid('fantasy')">Fantasía</li>
-                <li class="sidebar__item" onclick="printGrid('thriller')">Thriller</li>
-                <li class="sidebar__item" onclick="printGrid('classics')">Clásicos</li>
-                <li class="sidebar__item" onclick="printGrid('poetry')">Poesía</li>
-                <li class="sidebar__item" onclick="printGrid('history')">Historia</li>
+                <li class="sidebar__item" data-category="all">Todos</li>
+                <li class="sidebar__item" data-category="fiction">Ficción</li>
+                <li class="sidebar__item" data-category="fantasy">Fantasía</li>
+                <li class="sidebar__item" data-category="thriller">Thriller</li>
+                <li class="sidebar__item" data-category="classics">Clásicos</li>
+                <li class="sidebar__item" data-category="poetry">Poesía</li>
+                <li class="sidebar__item" data-category="history">Historia</li>
             </ul>
         </nav>
     </aside>
@@ -75,8 +75,10 @@
         <p>© Factoría F5 - Todos los derechos reservados.</p>
         <p>Desarrollado por Ángel Aragón y Nico Fernández</p>
     </footer>
-    <script src="./src/js/burger-menu.js"></script>
-    <script src="./src/js/print-index.js"></script>
+    <script src="./src/utils/burgerMenu.js"></script>
+    <script type="module" src="./src/services/printService.js"></script>
+    <script type="module" src="./src/services/searchService.js"></script>
+    <script type="module" src="./src/services/bookServices.js"></script>
 </body>
 
 </html>

@@ -6,6 +6,7 @@
  * @type {"http://localhost:3000/books"}
  */
 const API_URL = "http://localhost:3000/books";
+<<<<<<< HEAD
 
 /**
  * Description placeholder
@@ -21,8 +22,10 @@ const grid = document.querySelector("#books-grid")
  * @type {*}
  */
 const tableBooks = document.getElementById("tableBooks");
+=======
+const grid = document.querySelector("#books-grid");
+>>>>>>> realease/AB-12-Refactor-and-modular-code
 //----------------GET FUNCTION----------------//
-
 
 //READ - Get All the Books
 async function getAllBooks() {
@@ -59,7 +62,7 @@ async function printGrid(category) {
                     "beforeend",
                     `<article class="books__card">
                 <img src="./src/images/cover_${book.id}.jpg" alt="Portada ${book.title}"
-                    class="books__card__img">
+                    class="books__card__img" onerror="this.onerror=null; this.src='https://placehold.co/600x400';">
                 <div class="books__card__body">
                     <h5>${book.title}</h5>
                     <p class="books__card__body__txt">${book.author}</p>
@@ -98,8 +101,38 @@ async function printGrid(category) {
     }
 }
 
+<<<<<<< HEAD
 printGrid("all")
 
 async function printAllAdminMenu(){
 
 }
+=======
+export async function printGridTitle(title) {
+    try {
+        const books = await getAllBooks();
+        grid.innerHTML = "";
+        const filteredBooks = books.filter((book) =>
+            book.title.toLowerCase().includes(title.toLowerCase())
+        );
+        filteredBooks.forEach((book) => {
+            grid.insertAdjacentHTML(
+                "beforeend",
+                `<article class="books__card">
+            <img src="./src/images/cover_${book.id}.jpg" alt="Portada ${book.title}"
+                class="books__card__img">
+            <div class="books__card__body">
+                <h5>${book.title}</h5>
+                <p class="books__card__body__txt">${book.author}</p>
+                <button class="books__card__body__btn btn"><i class="bi bi-book"></i> Leer Ahora</button>
+            </div>
+        </article>`
+            );
+        });
+    } catch (error) {
+        console.error(`Error: ${error.message}`);
+    }
+}
+
+printGrid("all");
+>>>>>>> realease/AB-12-Refactor-and-modular-code
