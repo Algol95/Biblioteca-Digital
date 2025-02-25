@@ -12,8 +12,11 @@ body {
 }
 
 .books__card{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     width: 320px;
-    height: 460px;
+    min-height: 460px;
     border-radius: 1rem;
     border: 1px solid var(--color-border);
     gap: .5rem;
@@ -31,6 +34,9 @@ body {
 
 .books__card__body{
     margin: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .books__card__body__btn{
