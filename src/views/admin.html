@@ -115,7 +115,7 @@
           </button>
         </div>
 
-        <table class="table table-striped table-hover table-responsive" id="tableBooks">
+        <table class="table table-striped table-hover table-responsive" >
           <thead class="">
             <tr>
               <th>ID</th>
@@ -126,7 +126,7 @@
               <th><i class="bi bi-wrench-adjustable"></i></th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="tableBooks">
             <tr>
               <td>
                 <button
@@ -206,8 +206,8 @@
       integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
       crossorigin="anonymous"
     ></script>
-    <script src="../utils/print-index.js"></script>
-    <script src="../utils/burger-menu.js"></script>
+    <script type="module" src="../services/printService.js"></script>
+    <script src="../utils/burgerMenu.js"></script>
     <script src="../utils/popover.js"></script>
   </body>
 </html>
