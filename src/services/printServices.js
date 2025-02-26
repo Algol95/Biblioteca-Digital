@@ -136,4 +136,23 @@ export async function printAllBooks() {
     printListBooks(books);
 }
 
+function printModalBook(book) {
+  modalLabel.innerHTML = `<i class="bi bi-book-half"></i> ${book.title}`;
+  modalBody.innerHTML = `<div class="row">
+    <div class="col-md">
+      <img src="../images/cover_${book.id}.jpg" alt="Portada ${book.title}"
+      class="img-fluid" onerror="this.onerror=null; this.src='https://placehold.co/600x400';">
+    </div>
+    <div class="col-md-8">
+      <ul class="list-group">
+        <li class="list-group-item"><div class="fw-bold">Título</div><i class="bi bi-book"></i>${book.title}</li>
+        <li class="list-group-item"><div class="fw-bold">Autor</div><i class="bi bi-person"></i>${book.author}</li>
+        <li class="list-group-item"><div class="fw-bold">Año de publicación</div>${book.publish_year}</li>
+        <li class="list-group-item text-capitalize"><div class="fw-bold">Categoría</div>${book.category}</li>
+        <li class="list-group-item"><div class="fw-bold">Sinopsis</div>${book.synopsis}</li>
+      </ul>
+    </div>
+  </div>`;
+}
+
 printAllBooks();
