@@ -5,31 +5,31 @@ const bookController = new Controller()
 
 /**
  * Variable que referencia el contenedor del grid de libros en el DOM.
- *
  * Se utiliza para manipular y mostrar la lista de libros en la interfaz de usuario.
  *
  * @const {HTMLElement} grid El contenedor del grid de libros.
- * @author Nico Fernández
+ * @author {Nico Fernández}
  */
 const grid = document.querySelector("#books-grid");
 
 /**
- *  Constante que alberga el elemento con la ID #tableBooks
+ *  Constante que alberga el elemento con la ID `#tableBooks`
  * @type {document.getElementById}
  * @author {Ángel Aragón}
  */
 const tableAdmin = document.getElementById("tableBooks");
 
 /**
- * Constante que alberga el elemento con la ID #modalBody
+ * Constante que alberga el elemento con la ID `#modalBody`
  * @type {document.getElementById}
+ * @author {Ángel Aragón}
  */
 const modalBody = document.getElementById("modalBody");
 
 /**
- * Constante que alber el elemento con la ID #modalLabel
- *
+ * Constante que alber el elemento con la ID `#modalLabel`
  * @type {document.getElementById}
+ * @author {Ángel Aragón}
  */
 const modalLabel = document.getElementById("modalLabel");
 
@@ -41,7 +41,7 @@ const modalLabel = document.getElementById("modalLabel");
 const isAdminPage = window.location.pathname.includes("admin.html");
 
 /**
- * Imprime en el HTML una lista de la colección/array de books pasada por parametro.
+ * Imprime en el HTML una lista de la colección/array `books[]` pasada por parametro.
  *
  * @export
  * @param {books[]} booksArr
@@ -96,12 +96,17 @@ export function printListBooks(booksArr) {
             </tr>
             `;
     });
-
+    
     booksArr.forEach((book) => {
       document.getElementById("get" + book.id).addEventListener("click", () => {
         printModalBook(book);
       });
+      document.getElementById("upd" + book.id)
+        .addEventListener("click", function (event) {
+          printUpdModal(book);
+      });
     });
+
     initPopovers();
     initModals();
   } else {
@@ -124,11 +129,11 @@ export function printListBooks(booksArr) {
 }
 
 /**
- * Método que recoge un Get de todos los libros y llama a printListBooks(books) para imprimirlos
+ * Método que recoge un Get de todos los libros y llama a `printListBooks(books)` para imprimirlos
  *
  * @export
  * @async
- * @modified  Ahora llama a printListBooks(books) para simplificar y evitar repetir código.
+ * @modified  Ahora llama a `printListBooks(books)` para simplificar y evitar repetir código.
  * @author {Nico Fernández}{Ángel Aragón}
  */
 export async function printAllBooks() {
@@ -136,6 +141,13 @@ export async function printAllBooks() {
     printListBooks(books);
 }
 
+
+/**
+ * Función actualiza los datos de la ventana Modal con la visualización del objeto `Book` pasado por parametro.
+ *
+ * @param {object} book 
+ * @author {Ángel Aragón}
+ */
 function printModalBook(book) {
   modalLabel.innerHTML = `<i class="bi bi-book-half"></i> ${book.title}`;
   modalBody.innerHTML = `<div class="row">
@@ -145,12 +157,30 @@ function printModalBook(book) {
     </div>
     <div class="col-md-8">
       <ul class="list-group">
-        <li class="list-group-item"><div class="fw-bold">Título</div><i class="bi bi-book"></i>${book.title}</li>
-        <li class="list-group-item"><div class="fw-bold">Autor</div><i class="bi bi-person"></i>${book.author}</li>
-        <li class="list-group-item"><div class="fw-bold">Año de publicación</div>${book.publish_year}</li>
-        <li class="list-group-item text-capitalize"><div class="fw-bold">Categoría</div>${book.category}</li>
-        <li class="list-group-item"><div class="fw-bold">Sinopsis</div>${book.synopsis}</li>
+        <li class="list-group-item"><div class="fw-bold"><i class="bi bi-book"></i> Título</div>${book.title}</li>
+        <li class="list-group-item"><div class="fw-bold"><i class="bi bi-person"></i>Autor</div>${book.author}</li>
+        <li class="list-group-item"><div class="fw-bold"><i class="bi bi-calendar-date"></i> Año de publicación</div>${book.publish_year}</li>
+        <li class="list-group-item text-capitalize"><div class="fw-bold"><i class="bi bi-tags"></i> Categoría</div>${book.category}</li>
+        <li class="list-group-item"><div class="fw-bold"><i class="bi bi-blockquote-left"></i> Sinopsis</div>${book.synopsis}</li>
       </ul>
+    </div>
+  </div>`;
+}
+
+function printUpdModal(book){
+  modalLabel.innerHTML = `<i class="bi bi-pencil-square"></i> Editar libro <span class="text-primary">ID: ${book.id}</span>`;
+  modalBody.innerHTML = `<div class="row">
+    <div class="col-md">
+      <ul class="list-group">
+        <li class="list-group-item"><div class="fw-bold"><i class="bi bi-book"></i> Título</div>${book.title}</li>
+        <li class="list-group-item"><div class="fw-bold"><i class="bi bi-person"></i>Autor</div>${book.author}</li>
+        <li class="list-group-item"><div class="fw-bold"><i class="bi bi-calendar-date"></i> Año de publicación</div>${book.publish_year}</li>
+        <li class="list-group-item text-capitalize"><div class="fw-bold"><i class="bi bi-tags"></i> Categoría</div>${book.category}</li>
+        <li class="list-group-item"><div class="fw-bold"><i class="bi bi-blockquote-left"></i> Sinopsis</div>${book.synopsis}</li>
+      </ul>
+    </div>
+    <div class="col-md-8">
+      
     </div>
   </div>`;
 }
