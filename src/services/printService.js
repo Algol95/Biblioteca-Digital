@@ -1,8 +1,9 @@
-
+import { initPopovers } from "../utils/popover.js";
 
 /**
  * Dirección URL para consultas con la API
- * @type {"http://localhost:3000/books"}
+ * @type {string}
+ * @author {Nico Fernández}
  */
 const API_URL = "http://localhost:3000/books";
 const grid = document.querySelector("#books-grid");
@@ -14,14 +15,14 @@ const grid = document.querySelector("#books-grid");
  */
 const tableAdmin = document.getElementById("tableBooks");
 
-if (!grid) console.error("Error: #books-grid no encontrado en el DOM");
-if (!tableAdmin) console.error("Error: #tableBooks no encontrado en el DOM");
 
 /**
- * Constante que Boolean que es verdadero o falso si se encuentra en la página de index o no.
- * @type {Boolean}
- */
-const isIndexPage = window.location.pathname.includes("index.html")
+ * Constante que Boolean que es verdadero o falso si se encuentra en la página de admin o no.
+ * @type {boolean}
+ * @author {Ángel Aragón}
+ */ 
+const isAdminPage = window.location.pathname.includes("admin.html")
+
 
 //----------------GET FUNCTION----------------//
 
@@ -50,54 +51,19 @@ async function getSingleBook(id) {
 }
 
 //----------------PRINT FUNCTION----------------//
-export function printGrid(booksArr) {
-    grid.innerHTML = "";
-    booksArr.forEach((book) => {
-        grid.insertAdjacentHTML(
-            "beforeend",
-            `<article class="books__card">
-                    <img src="./src/images/cover_${book.id}.jpg" alt="Portada ${book.title}"
-                        class="books__card__img" onerror="this.onerror=null; this.src='https://placehold.co/600x400';">
-                    <div class="books__card__body">
-                        <h5>${book.title}</h5>
-                        <p class="books__card__body__txt">${book.author}</p>
-                        <button class="books__card__body__btn btn"><i class="bi bi-book"></i> Leer Ahora</button>
-                    </div>
-                </article>`
-        );
-    });
-}
-
 
 /**
- * Método que imprime en el HTML una lista de books
+ * Imprime en el HTML una lista de la colección/array de books pasada por parametro.
  *
  * @export
- * @async
- * @modified Modificado para que detecte en que página está, index.html o admin.html, y devuelva la lista de una forma u otra.
+ * @param {books[]} booksArr 
+ * @modified Modificado para que detecte en que página está, index.html o admin.html, y devuelva la lista con una estructura HTML u otra. Se inicializan los popovers.
  * @author {Nico Fernández}{Ángel Aragón}
  */
-export async function printAllBooks() {
-    const books = await getAllBooks();
-    if (isIndexPage){
-        grid.innerHTML = "";
-        books.forEach((book) => {
-            grid.insertAdjacentHTML(
-                "beforeend",
-                `<article class="books__card">
-                        <img src="./src/images/cover_${book.id}.jpg" alt="Portada ${book.title}"
-                            class="books__card__img" onerror="this.onerror=null; this.src='https://placehold.co/600x400';">
-                        <div class="books__card__body">
-                            <h5>${book.title}</h5>
-                            <p class="books__card__body__txt">${book.author}</p>
-                            <button class="books__card__body__btn btn"><i class="bi bi-book"></i> Leer Ahora</button>
-                        </div>
-                    </article>`
-            );
-        });
-    } else {
+export function printListBooks(booksArr) {
+    if (isAdminPage){
         tableAdmin.innerHTML = "";
-        books.forEach(book => {
+        booksArr.forEach(book => {
             tableAdmin.innerHTML += `
             <tr>
               <td>
@@ -112,9 +78,9 @@ export async function printAllBooks() {
                   ${book.id}
                 </button>
               </td>
-              <td>${book.title}</td>
+              <td class="text-truncate" style="max-width: 100px;">${book.title}</td>
               <td>${book.author}</td>
-              <td>${book.category}</td>
+              <td class="text-capitalize">${book.category}</td>
               <td class="d-grid gap-2 d-md-block">
                 <button
                   class="btn btn-primary"
@@ -141,9 +107,40 @@ export async function printAllBooks() {
               </td>
             </tr>
             `;
+            
         })
+        initPopovers();
+    } else {
+        grid.innerHTML = "";
+        booksArr.forEach((book) => {
+            grid.insertAdjacentHTML(
+                "beforeend",
+                `<article class="books__card">
+                        <img src="./src/images/cover_${book.id}.jpg" alt="Portada ${book.title}"
+                            class="books__card__img" onerror="this.onerror=null; this.src='https://placehold.co/600x400';">
+                        <div class="books__card__body">
+                            <h5>${book.title}</h5>
+                            <p class="books__card__body__txt">${book.author}</p>
+                            <button class="books__card__body__btn btn"><i class="bi bi-book"></i> Leer Ahora</button>
+                        </div>
+                    </article>`
+            );
+        });
     }
-    
+}
+
+
+/**
+ * Método que recoge un Get de todos los libros y llama a printListBooks(books) para imprimirlos
+ *
+ * @export
+ * @async
+ * @modified  Ahora llama a printListBooks(books) para simplificar y evitar repetir código.
+ * @author {Nico Fernández}{Ángel Aragón}
+ */
+export async function printAllBooks() {
+    const books = await getAllBooks();
+    printListBooks(books);
 }
 
 printAllBooks();

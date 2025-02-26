@@ -1,9 +1,11 @@
-/** 
+/**
  * Inicializa los popovers de bootstrap
  * @author {Ángel Aragón}
- * @file  */
-
-document.addEventListener("DOMContentLoaded", function () {
-    var popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
-    var popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl));
-});
+ * @export
+ */
+export function initPopovers() {
+    const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
+    popoverTriggerList.forEach(popoverTriggerEl => {
+        new bootstrap.Popover(popoverTriggerEl);
+    });
+}

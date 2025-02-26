@@ -89,13 +89,13 @@
       <nav class="sidebar__nav">
         <p class="sidebar__title">Categorías</p>
         <ul class="sidebar__list">
-          <li class="sidebar__item">Todos</li>
-          <li class="sidebar__item">Ficción</li>
-          <li class="sidebar__item">Fantasía</li>
-          <li class="sidebar__item">Thriller</li>
-          <li class="sidebar__item">Clásicos</li>
-          <li class="sidebar__item">Poesía</li>
-          <li class="sidebar__item">Historia</li>
+          <li class="sidebar__item" data-category="all">Todos</li>
+          <li class="sidebar__item" data-category="fiction">Ficción</li>
+          <li class="sidebar__item" data-category="fantasy">Fantasía</li>
+          <li class="sidebar__item" data-category="thriller">Thriller</li>
+          <li class="sidebar__item" data-category="classics">Clásicos</li>
+          <li class="sidebar__item" data-category="poetry">Poesía</li>
+          <li class="sidebar__item" data-category="history">Historia</li>
         </ul>
       </nav>
     </aside>
@@ -127,47 +127,6 @@
             </tr>
           </thead>
           <tbody id="tableBooks">
-            <tr>
-              <td>
-                <button
-                  class="btn btn-outline-primary"
-                  class="btn btn-success"
-                  data-bs-toggle="popover"
-                  data-bs-trigger="hover focus"
-                  data-bs-title="Visualizar libro"
-                  data-bs-content="Abre una ventana modal para visualizar todos los datos de este libro."
-                >
-                  1
-                </button>
-              </td>
-              <td>Cien años de soledad</td>
-              <td>Gabriel García Marquez</td>
-              <td>Novela</td>
-              <td class="d-grid gap-2 d-md-block">
-                <button
-                  class="btn btn-primary"
-                  class="btn btn-success"
-                  data-bs-toggle="popover"
-                  data-bs-placement="left"
-                  data-bs-trigger="hover focus"
-                  data-bs-title="Editar libro"
-                  data-bs-content="Abre una ventana modal para editar este libro."
-                >
-                  <i class="bi bi-pencil-square text-light"></i>
-                </button>
-                <button
-                  class="btn btn-danger"
-                  class="btn btn-success"
-                  data-bs-toggle="popover"
-                  data-bs-placement="left"
-                  data-bs-trigger="hover focus"
-                  data-bs-title="Borrar libro"
-                  data-bs-content="Abre una ventana modal para borrar este libro de la base de datos."
-                >
-                  <i class="bi bi-trash text-light"></i>
-                </button>
-              </td>
-            </tr>
           </tbody>
         </table>
       </section>
@@ -207,7 +166,10 @@
       crossorigin="anonymous"
     ></script>
     <script type="module" src="../services/printService.js"></script>
+    <script type="module" src="../services/searchService.js"></script>
+    <script type="module" src="../services/bookServices.js"></script>
+    <script type="module" src="../utils/popover.js"></script>
     <script src="../utils/burgerMenu.js"></script>
-    <script src="../utils/popover.js"></script>
+
   </body>
 </html>

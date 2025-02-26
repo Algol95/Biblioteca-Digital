@@ -11,7 +11,7 @@ document.querySelectorAll(".sidebar__item").forEach((item) => {
 async function filterByCategory(category) {
     const books = await printServices.getAllBooks();
     const filteredBooks = books.filter((book) => book.category === category);
-    printServices.printGrid(filteredBooks);
+    printServices.printListBooks(filteredBooks);
 }
 
 export async function filterByTitle(title) {
@@ -19,5 +19,5 @@ export async function filterByTitle(title) {
     const filteredBooks = books.filter((book) =>
         book.title.toLowerCase().includes(title.toLowerCase())
     );
-    printServices.printGrid(filteredBooks);
+    printServices.printListBooks(filteredBooks);
 }
