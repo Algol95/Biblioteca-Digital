@@ -104,7 +104,7 @@
         <div class="d-flex flex-row-reverse m-2">
           <button
             type="button"
-            class="btn btn-success"
+            class="btn btn-success btn--openModal"
             data-bs-toggle="popover"
             data-bs-placement="left"
             data-bs-trigger="hover focus"
@@ -129,6 +129,23 @@
           <tbody id="tableBooks">
           </tbody>
         </table>
+        <div class="modal fade modal-lg" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="modalLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body" id="modalBody">
+                ...
+              </div>
+              <div class="modal-footer" id="modalFooter">
+                <!--<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>-->
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
     </main>
     <footer>
@@ -165,10 +182,14 @@
       integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
       crossorigin="anonymous"
     ></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+   
     <script type="module" src="../services/printService.js"></script>
     <script type="module" src="../services/searchService.js"></script>
     <script type="module" src="../services/bookServices.js"></script>
     <script type="module" src="../utils/popover.js"></script>
+    <script type="module" src="../utils/modal.js"></script>
     <script src="../utils/burgerMenu.js"></script>
 
   </body>
