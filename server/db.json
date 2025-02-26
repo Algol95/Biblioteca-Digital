@@ -4,8 +4,10 @@
             "id": 1,
             "title": "Cien años de soledad",
             "author": "Gabriel García Marquez",
+            "publish_year": 0,
             "category": "fiction",
-            "synopsis": "Una novela emblemática de la literatura latinoamericana."
+            "synopsis": "Una novela emblemática de la literatura latinoamericana.",
+            "cover_path": "https://covers.openlibrary.org/b/id/12627383-L.jpg"
         },
         {
             "id": 2,

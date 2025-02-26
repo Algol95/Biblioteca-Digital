@@ -89,7 +89,7 @@ export function printListBooks(booksArr) {
             grid.insertAdjacentHTML(
                 "beforeend",
                 `<article class="books__card">
-                        <img src="./src/images/cover_${book.id}.jpg" alt="Portada ${book.title}"
+                        <img src="${book.cover_path}" alt="Portada ${book.title}"
                             class="books__card__img" onerror="this.onerror=null; this.src='https://placehold.co/600x400';">
                         <div class="books__card__body">
                             <h5>${book.title}</h5>
