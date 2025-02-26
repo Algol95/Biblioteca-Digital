@@ -1,12 +1,16 @@
 import { initPopovers } from "../utils/popover.js";
 import { initModals } from "../utils/modal.js";
+import { Controller } from "../controllers/bookController.js";
+const bookController = new Controller()
 
 /**
- * Dirección URL para consultas con la API
- * @type {string}
- * @author {Nico Fernández}
+ * Variable que referencia el contenedor del grid de libros en el DOM.
+ *
+ * Se utiliza para manipular y mostrar la lista de libros en la interfaz de usuario.
+ *
+ * @const {HTMLElement} grid El contenedor del grid de libros.
+ * @author Nico Fernández
  */
-const API_URL = "http://localhost:3000/books";
 const grid = document.querySelector("#books-grid");
 
 /**
@@ -35,34 +39,6 @@ const modalLabel = document.getElementById("modalLabel");
  * @author {Ángel Aragón}
  */
 const isAdminPage = window.location.pathname.includes("admin.html");
-
-//----------------GET FUNCTION----------------//
-
-//READ - Get All the Books
-export async function getAllBooks() {
-  try {
-    const res = await fetch(API_URL);
-    if (!res.ok) throw new Error(`Error: ${res.status}`);
-    const books = await res.json();
-    return books;
-  } catch (error) {
-    console.error(`Error: ${error.message}`);
-  }
-}
-
-// READ - Get only one Book
-async function getSingleBook(id) {
-  try {
-    const res = await fetch(`${API_URL}/${id}`);
-    if (!res.ok) throw new Error(`Error: ${res.status}`);
-    const book = await res.json();
-    return book;
-  } catch (error) {
-    console.error(`Error: ${error.message}`);
-  }
-}
-
-//----------------PRINT FUNCTION----------------//
 
 /**
  * Imprime en el HTML una lista de la colección/array de books pasada por parametro.
@@ -156,27 +132,8 @@ export function printListBooks(booksArr) {
  * @author {Nico Fernández}{Ángel Aragón}
  */
 export async function printAllBooks() {
-  const books = await getAllBooks();
-  printListBooks(books);
-}
-
-function printModalBook(book) {
-  modalLabel.innerHTML = `<i class="bi bi-book-half"></i> ${book.title}`;
-  modalBody.innerHTML = `<div class="row">
-    <div class="col-md">
-      <img src="../images/cover_${book.id}.jpg" alt="Portada ${book.title}"
-      class="img-fluid" onerror="this.onerror=null; this.src='https://placehold.co/600x400';">
-    </div>
-    <div class="col-md-8">
-      <ul class="list-group">
-        <li class="list-group-item"><div class="fw-bold">Título</div><i class="bi bi-book"></i>${book.title}</li>
-        <li class="list-group-item"><div class="fw-bold">Autor</div><i class="bi bi-person"></i>${book.author}</li>
-        <li class="list-group-item"><div class="fw-bold">Año de publicación</div>${book.publish_year}</li>
-        <li class="list-group-item text-capitalize"><div class="fw-bold">Categoría</div>${book.category}</li>
-        <li class="list-group-item"><div class="fw-bold">Sinopsis</div>${book.synopsis}</li>
-      </ul>
-    </div>
-  </div>`;
+    const books = await bookController.getAllBooks();
+    printListBooks(books);
 }
 
 printAllBooks();
