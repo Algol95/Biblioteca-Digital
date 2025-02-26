@@ -1,5 +1,19 @@
 import * as printServices from "./printServices.js";
-import * as bookController from "../controllers/bookController.js"
+/**
+ * Se importa la clase `Controller` desde el archivo `bookController.js`.
+ * Se crea una nueva instancia de la clase `Controller` para utilizar sus métodos CRUD.
+ * 
+ * @module
+ * @requires ../controllers/bookController.js
+ */
+import { Controller } from "../controllers/bookController.js";
+
+/** 
+ * Instancia de la clase `Controller` para poder realizar operaciones CRUD sobre los libros.
+ * 
+ * @type {Controller}
+ */
+const bookController = new Controller();
 
 /**
  * Añade un listener de eventos a cada elemento de la lista de categorías de la barra lateral.

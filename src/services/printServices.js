@@ -1,5 +1,6 @@
 import { initPopovers } from "../utils/popover.js";
-import * as bookController from "../controllers/bookController.js";
+import { Controller } from "../controllers/bookController.js";
+const bookController = new Controller()
 
 /**
  * Variable que referencia el contenedor del grid de libros en el DOM.
