@@ -181,7 +181,7 @@ footer p {
     justify-content: center;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
     header{
         justify-content: start;
     }
