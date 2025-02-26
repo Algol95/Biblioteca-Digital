@@ -1,7 +1,14 @@
 import { initPopovers } from "../utils/popover.js";
-import * as bookController from "../controllers/bookController.js"
+import * as bookController from "../controllers/bookController.js";
 
-
+/**
+ * Variable que referencia el contenedor del grid de libros en el DOM.
+ *
+ * Se utiliza para manipular y mostrar la lista de libros en la interfaz de usuario.
+ *
+ * @const {HTMLElement} grid El contenedor del grid de libros.
+ * @author Nico Fernández
+ */
 const grid = document.querySelector("#books-grid");
 
 /**
@@ -17,9 +24,6 @@ const tableAdmin = document.getElementById("tableBooks");
  * @author {Ángel Aragón}
  */
 const isAdminPage = window.location.pathname.includes("admin.html");
-
-
-//----------------PRINT FUNCTION----------------//
 
 /**
  * Imprime en el HTML una lista de la colección/array de books pasada por parametro.

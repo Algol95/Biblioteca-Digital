@@ -1,6 +1,13 @@
 import { filterByTitle } from "./bookServices.js";
-const searchInputs = document.querySelectorAll('input[type="search"]');
 
+/**
+ * Selecciona todos los elementos `input` con el atributo `type="search"` en el documento.
+ *
+ * @const
+ * @type {NodeListOf<HTMLInputElement>}
+ * @author Nico Fernández
+ */
+const searchInputs = document.querySelectorAll('input[type="search"]');
 /**
  * Maneja la funcionalidad de búsqueda de libros por título, filtrando los libros
  * según el texto introducido por el usuario en los campos de búsqueda.
