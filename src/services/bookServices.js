@@ -1,4 +1,5 @@
 import * as printServices from "./printService.js";
+import * as bookController from "../controllers/bookController.js"
 
 document.querySelectorAll(".sidebar__item").forEach((item) => {
     item.addEventListener("click", () => {
@@ -9,13 +10,13 @@ document.querySelectorAll(".sidebar__item").forEach((item) => {
 
 //----------FILTER & PRINT---------//
 async function filterByCategory(category) {
-    const books = await printServices.getAllBooks();
+    const books = await bookController.getAllBooks();
     const filteredBooks = books.filter((book) => book.category === category);
     printServices.printListBooks(filteredBooks);
 }
 
 export async function filterByTitle(title) {
-    const books = await printServices.getAllBooks();
+    const books = await bookController.getAllBooks();
     const filteredBooks = books.filter((book) =>
         book.title.toLowerCase().includes(title.toLowerCase())
     );

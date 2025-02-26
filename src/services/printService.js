@@ -1,54 +1,23 @@
 import { initPopovers } from "../utils/popover.js";
+import * as bookController from "../controllers/bookController.js"
 
-/**
- * Dirección URL para consultas con la API
- * @type {string}
- * @author {Nico Fernández}
- */
-const API_URL = "http://localhost:3000/books";
+
 const grid = document.querySelector("#books-grid");
 
 /**
  *  Constante que alberga el elemento con la ID #tableBooks
- * @type {document.getElementById} 
+ * @type {document.getElementById}
  * @author {Ángel Aragón}
  */
 const tableAdmin = document.getElementById("tableBooks");
-
 
 /**
  * Constante que Boolean que es verdadero o falso si se encuentra en la página de admin o no.
  * @type {boolean}
  * @author {Ángel Aragón}
- */ 
-const isAdminPage = window.location.pathname.includes("admin.html")
+ */
+const isAdminPage = window.location.pathname.includes("admin.html");
 
-
-//----------------GET FUNCTION----------------//
-
-//READ - Get All the Books
-export async function getAllBooks() {
-    try {
-        const res = await fetch(API_URL);
-        if (!res.ok) throw new Error(`Error: ${res.status}`);
-        const books = await res.json();
-        return books;
-    } catch (error) {
-        console.error(`Error: ${error.message}`);
-    }
-}
-
-// READ - Get only one Book
-async function getSingleBook(id) {
-    try {
-        const res = await fetch(`${API_URL}/${id}`);
-        if (!res.ok) throw new Error(`Error: ${res.status}`);
-        const book = await res.json();
-        return book;
-    } catch (error) {
-        console.error(`Error: ${error.message}`);
-    }
-}
 
 //----------------PRINT FUNCTION----------------//
 
@@ -56,25 +25,25 @@ async function getSingleBook(id) {
  * Imprime en el HTML una lista de la colección/array de books pasada por parametro.
  *
  * @export
- * @param {books[]} booksArr 
+ * @param {books[]} booksArr
  * @modified Modificado para que detecte en que página está, index.html o admin.html, y devuelva la lista con una estructura HTML u otra. Se inicializan los popovers.
  * @author {Nico Fernández}{Ángel Aragón}
  */
 export function printListBooks(booksArr) {
-    if (isAdminPage){
+    if (isAdminPage) {
         tableAdmin.innerHTML = "";
-        booksArr.forEach(book => {
+        booksArr.forEach((book) => {
             tableAdmin.innerHTML += `
             <tr>
-              <td>
-                <button
-                  class="btn btn-outline-primary"
-                  class="btn btn-success"
-                  data-bs-toggle="popover"
-                  data-bs-trigger="hover focus"
-                  data-bs-title="Visualizar libro"
-                  data-bs-content="Abre una ventana modal para visualizar todos los datos de este libro."
-                >
+                <td>
+                    <button
+                    class="btn btn-outline-primary"
+                    class="btn btn-success"
+                    data-bs-toggle="popover"
+                    data-bs-trigger="hover focus"
+                    data-bs-title="Visualizar libro"
+                    data-bs-content="Abre una ventana modal para visualizar todos los datos de este libro."
+                    >
                   ${book.id}
                 </button>
               </td>
@@ -107,8 +76,7 @@ export function printListBooks(booksArr) {
               </td>
             </tr>
             `;
-            
-        })
+        });
         initPopovers();
     } else {
         grid.innerHTML = "";
@@ -129,7 +97,6 @@ export function printListBooks(booksArr) {
     }
 }
 
-
 /**
  * Método que recoge un Get de todos los libros y llama a printListBooks(books) para imprimirlos
  *
@@ -139,7 +106,7 @@ export function printListBooks(booksArr) {
  * @author {Nico Fernández}{Ángel Aragón}
  */
 export async function printAllBooks() {
-    const books = await getAllBooks();
+    const books = await bookController.getAllBooks();
     printListBooks(books);
 }
 
