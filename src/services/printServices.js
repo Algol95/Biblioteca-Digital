@@ -90,6 +90,17 @@ export function printListBooks(booksArr) {
                   <i class="bi bi-pencil-square text-light"></i>
                 </button>
                 <button
+                  class="btn btn-primary btn--openModal"
+                  data-bs-toggle="popover"
+                  data-bs-placement="left"
+                  data-bs-trigger="hover focus"
+                  data-bs-title="Buscar Metadatos"
+                  data-bs-content="Busca la información del libro en la API de OpenLibrary."
+                  id="dwn${book.id}"
+                >
+                  <i class="bi bi-download text-light"></i>
+                </button>
+                <button
                   class="btn btn-danger btn--openModal"
                   data-bs-toggle="popover"
                   data-bs-placement="left"
