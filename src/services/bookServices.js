@@ -8,6 +8,14 @@ import * as printServices from "./printServices.js";
  */
 import { Controller } from "../controllers/bookController.js";
 
+/**
+ * Se importa la clase `Book` desde el archivo `book.js`.
+ * 
+ * @module
+ * @requires ../models/book.js
+ */
+import { Book } from "../models/books.js";
+
 /** 
  * Instancia de la clase `Controller` para poder realizar operaciones CRUD sobre los libros.
  * 
@@ -22,7 +30,7 @@ const bookController = new Controller();
  * extrae la categoría del atributo `data-category`. Dependiendo de la categoría seleccionada, se ejecuta la función 
  * correspondiente, ya sea para imprimir todos los libros o filtrar los libros por categoría.
  * 
- * @author Nico Fernández
+ * @author {Nico Fernández}
  */
 document.querySelectorAll(".sidebar__item").forEach((item) => {
     item.addEventListener("click", () => {
@@ -41,7 +49,7 @@ document.querySelectorAll(".sidebar__item").forEach((item) => {
  * @async
  * @param {string} category La categoría por la cual filtrar los libros.
  * @returns {Promise<void>} Promesa que se resuelve cuando los libros filtrados son impresos.
- * @author Nico Fernández
+ * @author {Nico Fernández}
  * @modified Se añadió manejo de errores con try...catch para capturar posibles fallos en la obtención de los libros.
  */
 async function filterByCategory(category) {
@@ -63,7 +71,7 @@ async function filterByCategory(category) {
  * @async
  * @param {string} title El título que se utilizará para filtrar los libros.
  * @returns {Promise<void>} Promesa que se resuelve cuando los libros filtrados son impresos.
- * @author Nico Fernández
+ * @author {Nico Fernández}
  * @modified Se añadió manejo de errores con try...catch para capturar posibles fallos en la obtención de los libros.
  */
 export async function filterByTitle(title) {
@@ -76,4 +84,20 @@ export async function filterByTitle(title) {
     } catch (error) {
         console.error(`Error al filtrar libros por título: ${error.message}`);
     }
+}
+
+export async function updateBook(book) {
+    const updBook = new Book(
+        book.id,
+        document.getElementById("updModalTitle").value ? document.getElementById("updModalTitle").value : book.title,
+        document.getElementById("updModalAuthor").value ? document.getElementById("updModalAuthor").value : book.author,
+        document.getElementById("updModalPublish_year").value ? document.getElementById("updModalPublish_year").value : book.publish_year,
+        document.getElementById("updModalCategory").value ? document.getElementById("updModalCategory").value : book.category,
+        document.getElementById("updModalSynopsis").value ? document.getElementById("updModalSynopsis").value : book.synopsis,
+        document.getElementById("updModalPath").value ? document.getElementById("updModalPath").value : book.cover_path,
+    )
+    console.log(updBook);
+    const response = await bookController.updateBook(book.id, updBook);
+    console.log(response);
+
 }
