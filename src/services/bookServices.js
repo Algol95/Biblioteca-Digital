@@ -87,15 +87,17 @@ export async function filterByTitle(title) {
 }
 
 export async function updateBook(book) {
-
     const updBook = new Book(
+        book.id,
         document.getElementById("updModalTitle").value ? document.getElementById("updModalTitle").value : book.title,
         document.getElementById("updModalAuthor").value ? document.getElementById("updModalAuthor").value : book.author,
         document.getElementById("updModalPublish_year").value ? document.getElementById("updModalPublish_year").value : book.publish_year,
         document.getElementById("updModalCategory").value ? document.getElementById("updModalCategory").value : book.category,
         document.getElementById("updModalSynopsis").value ? document.getElementById("updModalSynopsis").value : book.synopsis,
-        document.getElementById("updModalPath").value ? document.getElementById("updModalPath").value : book.synopsis,
+        document.getElementById("updModalPath").value ? document.getElementById("updModalPath").value : book.cover_path,
     )
-    response = await bookController.updateBook(book.id, updBook);
+    console.log(updBook);
+    const response = await bookController.updateBook(book.id, updBook);
+    console.log(response);
 
 }

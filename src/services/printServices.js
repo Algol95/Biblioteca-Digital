@@ -1,6 +1,7 @@
 import { initPopovers } from "../utils/popover.js";
 import { initModals } from "../utils/modal.js";
 import { Controller } from "../controllers/bookController.js";
+import { updateBook } from "../services/bookServices.js"
 const bookController = new Controller()
 
 /**
@@ -159,7 +160,7 @@ function printModalBook(book) {
   modalLabel.innerHTML = `<i class="bi bi-book-half"></i> ${book.title}`;
   modalBody.innerHTML = `<div class="row">
     <div class="col-md">
-      <img src="../images/cover_${book.id}.jpg" alt="Portada ${book.title}"
+      <img src="${book.cover_path}" alt="Portada ${book.title}"
       class="img-fluid" onerror="this.onerror=null; this.src='https://placehold.co/600x400';">
     </div>
     <div class="col-md-8">
@@ -249,6 +250,11 @@ function printUpdModal(book){
 
   modalFooter.innerHTML = `<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
   <button type="button" class="btn btn-primary" form="updFormBook" id="btnUpdBook">Actualizar</button>`;
+
+  document.getElementById("btnUpdBook")
+  .addEventListener("click", () => {
+    updateBook(book);
+  })
 }
 
 printAllBooks();
