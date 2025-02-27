@@ -34,6 +34,13 @@ const modalBody = document.getElementById("modalBody");
 const modalLabel = document.getElementById("modalLabel");
 
 /**
+ * Constante que alber el elemento con la ID `#modalFooter`
+ * @type {document.getElementById}
+ * @author {Ángel Aragón}
+ */
+const modalFooter = document.getElementById("modalFooter");
+
+/**
  * Constante que Boolean que es verdadero o falso si se encuentra en la página de admin o no.
  * @type {boolean}
  * @author {Ángel Aragón}
@@ -167,22 +174,81 @@ function printModalBook(book) {
   </div>`;
 }
 
+/**
+ * Función actualiza los datos de la ventana Modal con la visualización del objeto `Book` a actualizar y un formulario para actualizarlo.
+ *
+ * @param {object} book 
+ * @author {Ángel Aragón}
+ */
 function printUpdModal(book){
   modalLabel.innerHTML = `<i class="bi bi-pencil-square"></i> Editar libro <span class="text-primary">ID: ${book.id}</span>`;
-  modalBody.innerHTML = `<div class="row">
-    <div class="col-md">
+  modalBody.innerHTML = `
+  <!--------------- VISTA PRELIMINAR DEL LIBRO - AMCA ---------------->
+  <div class="row">
+    <div class="col-md-5 d-none d-md-block">
       <ul class="list-group">
         <li class="list-group-item"><div class="fw-bold"><i class="bi bi-book"></i> Título</div>${book.title}</li>
         <li class="list-group-item"><div class="fw-bold"><i class="bi bi-person"></i>Autor</div>${book.author}</li>
         <li class="list-group-item"><div class="fw-bold"><i class="bi bi-calendar-date"></i> Año de publicación</div>${book.publish_year}</li>
         <li class="list-group-item text-capitalize"><div class="fw-bold"><i class="bi bi-tags"></i> Categoría</div>${book.category}</li>
+        <li class="list-group-item">
+        <div class="fw-bold">
+          <i class="bi bi-file-image"></i> Portada
+        </div>
+        <div class="d-flex align-items-center">
+          <img src="${book.cover_path}" alt="Portada del libro" class="img-thumbnail me-2" style="width: 50px; height: auto;">
+            <p class="text-break d-inline-block" style="max-width: 100%;">
+            ${book.cover_path}
+            </p>
+        </div>
+        </li>
         <li class="list-group-item"><div class="fw-bold"><i class="bi bi-blockquote-left"></i> Sinopsis</div>${book.synopsis}</li>
       </ul>
     </div>
-    <div class="col-md-8">
-      
+
+    <!--------------- FORM UPDATE DEL LIBRO - AMCA ---------------->
+    
+    <div class="col-md-7">
+      <form id="updFormBook"> 
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="updModalTitle"
+          placeholder="Título">
+          <label for="updModalTitle"><i class="bi bi-book"></i> Título</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="updModalAuthor" placeholder="Autor">
+          <label for="updModalAuthor"><i class="bi bi-person"></i> Autor</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="number" class="form-control" id="updModalPublish_year" placeholder="Año de publicación">
+          <label for="updModalPublish_year"><i class="bi bi-calendar-date"></i> Año de publicación</label>
+        </div>
+        <div class="input-group mb-3">
+          <label for="updModalCategory" class="input-group-text"><i class="bi bi-tags"></i></label>
+          <select class="form-select" id="updModalCategory" required>
+            <option selected disabled value="">Selecciona categoría...</option>
+            <option value="fiction">Ficción</option>
+            <option value="fantasy">Fantasía</option>
+            <option value="thriller">Thriller</option>
+            <option value="classics">Clásicos</option>
+            <option value="poetry">Poesía</option>
+            <option value="history">Historia</option>
+          </select>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="updModalPath" placeholder="URL Imágen Portada">
+          <label for="updModalPath"><i class="bi bi-link"></i> URL Imágen Portada</label>
+        </div>
+        <div class="form-floating">
+          <textarea class="form-control" placeholder="Sinopsis" id="updModalSynopsis" style="height: 300px"></textarea>
+          <label for="updModalSynopsis"><i class="bi bi-blockquote-left"></i> Sinopsis</label>
+        </div>
+      </form>
     </div>
   </div>`;
+
+  modalFooter.innerHTML = `<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+  <button type="button" class="btn btn-primary" form="updFormBook" id="btnUpdBook">Actualizar</button>`;
 }
 
 printAllBooks();

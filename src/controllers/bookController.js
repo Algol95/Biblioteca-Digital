@@ -11,7 +11,7 @@ const API_URL = "http://localhost:3000/books";
  *
  * @export
  * @class Controller
- * @author Nico Fernández
+ * @author {Nico Fernández}
  */
 export class Controller {
     /**
@@ -68,8 +68,8 @@ export class Controller {
      * Actualiza la información de un libro existente en la API.
      *
      * @param {number|string} id El ID del libro a actualizar.
-     * @param {Object} updatedBook El objeto con los datos actualizados del libro.
-     * @returns {Promise<Object>} El libro actualizado con los datos de la API.
+     * @param {book} updatedBook El objeto con los datos actualizados del libro.
+     * @returns {Promise<book>} El libro actualizado con los datos de la API.
      * @memberof Controller
      */
     async updateBook(id, updatedBook) {
