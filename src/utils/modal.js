@@ -5,7 +5,6 @@
  */
 export function initModals() {
     const modalButtons = document.querySelectorAll(".btn--openModal");
-    console.log(modalButtons);
     
     modalButtons.forEach(button => {
         button.addEventListener("click", function () {

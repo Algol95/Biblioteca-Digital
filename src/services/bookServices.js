@@ -101,3 +101,32 @@ export async function updateBook(book) {
     console.log(response);
 
 }
+
+/**
+ * Actualiza los metadatos de un libro en la base de datos.
+ *
+ * @async
+ * @function updateMetaBook
+ * @param {Object} book - Objeto que contiene los datos actualizados del libro.
+ * @param {number|string} book.id - ID único del libro.
+ * @param {string} book.title - Título del libro.
+ * @param {string} book.author - Autor del libro.
+ * @param {string} book.category - Categoría del libro.
+ * @param {string} book.synopsis - Sinopsis del libro.
+ * @param {string} book.publish_year - Año de publicación del libro.
+ * @param {string} book.cover_path - URL de la portada del libro.
+ * 
+ * @returns {Promise<void>} - No retorna valor, pero registra la respuesta en la consola.
+ * 
+ * @modified Se agregó el log de la respuesta para depuración.
+ * @author Nico Fernández
+ */
+export async function updateMetaBook(book) {
+    try {
+        const response = await bookController.updateBook(book.id, book);
+    }
+    catch (error) {
+        console.error(`Error al actualizar los metadatos del libro: ${error.message}`);
+    }
+
+}

@@ -1,8 +1,11 @@
 import { initPopovers } from "../utils/popover.js";
 import { initModals } from "../utils/modal.js";
 import { Controller } from "../controllers/bookController.js";
-import { updateBook } from "../services/bookServices.js"
-const bookController = new Controller()
+import { updateBook } from "../services/bookServices.js";
+import { getMetadata } from "../services/getMetadata.js";
+import { Book } from "../models/books.js";
+import { updateMetaBook } from "../services/bookServices.js";
+const bookController = new Controller();
 
 /**
  * Variable que referencia el contenedor del grid de libros en el DOM.
@@ -57,10 +60,10 @@ const isAdminPage = window.location.pathname.includes("admin.html");
  * @author {Nico Fernández}{Ángel Aragón}
  */
 export function printListBooks(booksArr) {
-  if (isAdminPage) {
-    tableAdmin.innerHTML = "";
-    booksArr.forEach((book) => {
-      tableAdmin.innerHTML += `
+    if (isAdminPage) {
+        tableAdmin.innerHTML = "";
+        booksArr.forEach((book) => {
+            tableAdmin.innerHTML += `
             <tr>
               <td>
                 <button
@@ -98,7 +101,7 @@ export function printListBooks(booksArr) {
                   data-bs-content="Busca la información del libro en la API de OpenLibrary."
                   id="dwn${book.id}"
                 >
-                  <i class="bi bi-download text-light"></i>
+                  <i class="bi bi-database-add text-light"></i>
                 </button>
                 <button
                   class="btn btn-danger btn--openModal"
@@ -114,26 +117,34 @@ export function printListBooks(booksArr) {
               </td>
             </tr>
             `;
-    });
-    
-    booksArr.forEach((book) => {
-      document.getElementById("get" + book.id).addEventListener("click", () => {
-        printModalBook(book);
-      });
-      document.getElementById("upd" + book.id)
-        .addEventListener("click", function (event) {
-          printUpdModal(book);
-      });
-    });
+        });
 
-    initPopovers();
-    initModals();
-  } else {
-    grid.innerHTML = "";
-    booksArr.forEach((book) => {
-      grid.insertAdjacentHTML(
-        "beforeend",
-        `<article class="books__card">
+        booksArr.forEach((book) => {
+            document
+                .getElementById("get" + book.id)
+                .addEventListener("click", () => {
+                    printModalBook(book);
+                });
+            document
+                .getElementById("upd" + book.id)
+                .addEventListener("click", function (event) {
+                    printUpdModal(book);
+                });
+            document
+                .getElementById("dwn" + book.id)
+                .addEventListener("click", function (event) {
+                    printModalMeta(book);
+                });
+        });
+
+        initPopovers();
+        initModals();
+    } else {
+        grid.innerHTML = "";
+        booksArr.forEach((book) => {
+            grid.insertAdjacentHTML(
+                "beforeend",
+                `<article class="books__card">
                         <img src="${book.cover_path}" alt="Portada ${book.title}"
                             class="books__card__img" onerror="this.onerror=null; this.src='https://placehold.co/600x400';">
                         <div class="books__card__body">
@@ -142,9 +153,9 @@ export function printListBooks(booksArr) {
                             <button class="books__card__body__btn btn"><i class="bi bi-book"></i> Leer Ahora</button>
                         </div>
                     </article>`
-      );
-    });
-  }
+            );
+        });
+    }
 }
 
 /**
@@ -160,16 +171,15 @@ export async function printAllBooks() {
     printListBooks(books);
 }
 
-
 /**
  * Función actualiza los datos de la ventana Modal con la visualización del objeto `Book` pasado por parametro.
  *
- * @param {object} book 
+ * @param {object} book
  * @author {Ángel Aragón}
  */
 function printModalBook(book) {
-  modalLabel.innerHTML = `<i class="bi bi-book-half"></i> ${book.title}`;
-  modalBody.innerHTML = `<div class="row">
+    modalLabel.innerHTML = `<i class="bi bi-book-half"></i> ${book.title}`;
+    modalBody.innerHTML = `<div class="row">
     <div class="col-md">
       <img src="${book.cover_path}" alt="Portada ${book.title}"
       class="img-fluid" onerror="this.onerror=null; this.src='https://placehold.co/600x400';">
@@ -189,12 +199,12 @@ function printModalBook(book) {
 /**
  * Función actualiza los datos de la ventana Modal con la visualización del objeto `Book` a actualizar y un formulario para actualizarlo.
  *
- * @param {object} book 
+ * @param {object} book
  * @author {Ángel Aragón}
  */
-function printUpdModal(book){
-  modalLabel.innerHTML = `<i class="bi bi-pencil-square"></i> Editar libro <span class="text-primary">ID: ${book.id}</span>`;
-  modalBody.innerHTML = `
+function printUpdModal(book) {
+    modalLabel.innerHTML = `<i class="bi bi-pencil-square"></i> Editar libro <span class="text-primary">ID: ${book.id}</span>`;
+    modalBody.innerHTML = `
   <!--------------- VISTA PRELIMINAR DEL LIBRO - AMCA ---------------->
   <div class="row">
     <div class="col-md-5 d-none d-md-block">
@@ -259,13 +269,62 @@ function printUpdModal(book){
     </div>
   </div>`;
 
-  modalFooter.innerHTML = `<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+    modalFooter.innerHTML = `<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
   <button type="button" class="btn btn-primary" form="updFormBook" id="btnUpdBook">Actualizar</button>`;
 
-  document.getElementById("btnUpdBook")
-  .addEventListener("click", () => {
-    updateBook(book);
-  })
+    document.getElementById("btnUpdBook").addEventListener("click", () => {
+        updateBook(book);
+    });
 }
+
+/**
+ * Muestra en el modal los metadatos de un libro obtenidos desde OpenLibrary.
+ *
+ * @async
+ * @function printModalMeta
+ * @param {Object} book - Objeto que representa el libro seleccionado.
+ * @param {number|string} book.id - ID único del libro.
+ * @param {string} book.title - Título del libro.
+ * @param {string} book.author - Autor del libro.
+ * @param {string} book.category - Categoría del libro.
+ * @param {string} book.synopsis - Sinopsis del libro.
+ * 
+ * @returns {Promise<void>} - No retorna valor, actualiza el contenido del modal.
+ * @author Nico Fernández
+ */
+async function printModalMeta(book) {
+  modalBody.innerHTML = ""
+  const metaBook = await getMetadata(book.title, book.author);
+  const metaBookObj = new Book(
+    book.id,
+    metaBook.title,
+    metaBook.author,
+    metaBook.publish_year,
+    book.category,
+    book.synopsis,
+    metaBook.cover_path
+  );
+  modalLabel.innerHTML = `<i class="bi bi-book-half"></i> ${book.title}`;
+  modalBody.innerHTML = `<div class="row">
+    <div class="col-md">
+      <img src="${metaBook.cover_path}" alt="Portada ${metaBook.title}"
+      class="img-fluid" onerror="this.onerror=null; this.src='https://placehold.co/600x400';">
+    </div>
+    <div class="col-md-8">
+      <ul class="list-group">
+        <li class="list-group-item"><div class="fw-bold"><i class="bi bi-book"></i> Título</div>${metaBook.title}</li>
+        <li class="list-group-item"><div class="fw-bold"><i class="bi bi-person"></i>Autor</div>${metaBook.author}</li>
+        <li class="list-group-item"><div class="fw-bold"><i class="bi bi-calendar-date"></i> Año de publicación</div>${metaBook.publish_year}</li>
+      </ul>
+    </div>
+  </div>`;
+  modalFooter.innerHTML = `<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+  <button type="button" class="btn btn-primary" form="updFormBook" id="btnUpdMetaBook">Actualizar</button>`;
+
+  document.getElementById("btnUpdMetaBook").addEventListener("click", () => {
+    updateMetaBook(metaBookObj);
+  });
+}
+
 
 printAllBooks();
