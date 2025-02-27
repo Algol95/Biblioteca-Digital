@@ -11,10 +11,12 @@
     },
     {
       "id": "2",
-      "title": "1984",
-      "author": "George Orwell",
+      "title": "1984 (adaptation)",
+      "author": "Michael Dean",
+      "publish_year": 2003,
       "category": "fiction",
-      "synopsis": "Una distopía política que examina el totalitarismo."
+      "synopsis": "Una distopía política que examina el totalitarismo.",
+      "cover_path": "https://covers.openlibrary.org/b/id/8745958-L.jpg"
     },
     {
       "id": "3",
@@ -37,29 +39,37 @@
       "id": "5",
       "title": "The Shining",
       "author": "Stephen King",
+      "publish_year": 1977,
       "category": "thriller",
-      "synopsis": "Un thriller psicológico sobre un hombre y su familia atrapados en un hotel aislado."
+      "synopsis": "Un thriller psicológico sobre un hombre y su familia atrapados en un hotel aislado.",
+      "cover_path": "https://covers.openlibrary.org/b/id/12376585-L.jpg"
     },
     {
       "id": "6",
       "title": "Harry Potter and the Sorcerer's Stone",
-      "author": "J.K. Rowling",
+      "author": "J. K. Rowling",
+      "publish_year": 2000,
       "category": "fantasy",
-      "synopsis": "La primera entrega de la famosa serie de fantasía."
+      "synopsis": "La primera entrega de la famosa serie de fantasía.",
+      "cover_path": "https://covers.openlibrary.org/b/id/276518-L.jpg"
     },
     {
       "id": "7",
       "title": "The Odyssey",
-      "author": "Homer",
+      "author": "Όμηρος",
+      "publish_year": 1946,
       "category": "history",
-      "synopsis": "La épica historia de la vuelta a casa de Odiseo."
+      "synopsis": "La épica historia de la vuelta a casa de Odiseo.",
+      "cover_path": "https://covers.openlibrary.org/b/id/12474938-L.jpg"
     },
     {
       "id": "8",
       "title": "Leaves of Grass",
       "author": "Walt Whitman",
+      "publish_year": 1855,
       "category": "poetry",
-      "synopsis": "Una famosa obra poética que celebra la individualidad y la naturaleza."
+      "synopsis": "Una famosa obra poética que celebra la individualidad y la naturaleza.",
+      "cover_path": "https://covers.openlibrary.org/b/id/9000447-L.jpg"
     }
   ]
 }
