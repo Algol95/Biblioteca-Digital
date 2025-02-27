@@ -86,6 +86,15 @@ export async function filterByTitle(title) {
     }
 }
 
+
+/**
+ * Función que crea un nuevo objeto `Book` con los valores del modal.
+ * Si están vacías, el valor es el el que tenía el libro por defecto.
+ *
+ * @export
+ * @async
+ * @param {book} book 
+ */
 export async function updateBook(book) {
     const updBook = new Book(
         book.id,
@@ -96,8 +105,6 @@ export async function updateBook(book) {
         document.getElementById("updModalSynopsis").value ? document.getElementById("updModalSynopsis").value : book.synopsis,
         document.getElementById("updModalPath").value ? document.getElementById("updModalPath").value : book.cover_path,
     )
-    console.log(updBook);
     const response = await bookController.updateBook(book.id, updBook);
-    console.log(response);
 
 }

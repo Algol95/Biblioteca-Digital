@@ -48,6 +48,10 @@ const modalFooter = document.getElementById("modalFooter");
  */
 const isAdminPage = window.location.pathname.includes("admin.html");
 
+document.getElementById("createBook").addEventListener("click", () => {
+  printCreateModal();
+})
+
 /**
  * Imprime en el HTML una lista de la colección/array `books[]` pasada por parametro.
  *
@@ -110,7 +114,7 @@ export function printListBooks(booksArr) {
         printModalBook(book);
       });
       document.getElementById("upd" + book.id)
-        .addEventListener("click", function (event) {
+        .addEventListener("click", () => {
           printUpdModal(book);
       });
     });
@@ -255,6 +259,131 @@ function printUpdModal(book){
   .addEventListener("click", () => {
     updateBook(book);
   })
+}
+
+/**
+ * Función actualiza los datos de la ventana Modal con la visualización del objeto `Book` a actualizar y un formulario para actualizarlo.
+ *
+ * @param {object} book 
+ * @author {Ángel Aragón}
+ */
+function printCreateModal(){
+  modalLabel.innerHTML = `<i class="bi bi-database-add"></i> Crear nuevo libro</span>`;
+  modalBody.innerHTML = `
+      <form id="createFormBook" class="needs-validation" novalidate> 
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="createModalTitle" required
+          placeholder="Título">
+          <div class="valid-feedback">
+            Título aceptado
+          </div>
+          <div class="invalid-feedback">
+            El campo no puede estar vacío
+          </div>
+          <label for="createModalTitle"><i class="bi bi-book"></i> Título</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="createModalAuthor" placeholder="Autor" required>
+          <div class="valid-feedback">
+            Valor aceptado
+          </div>
+          <div class="invalid-feedback">
+            El campo no puede estar vacío
+          </div>
+          <label for="createModalAuthor"><i class="bi bi-person"></i> Autor</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="number" class="form-control" id="createModalPublish_year" placeholder="Año de publicación" required>
+          <div class="valid-feedback">
+            Valor aceptado
+          </div>
+          <div class="invalid-feedback">
+            El valor es requerido
+          </div>
+          <label for="createModalPublish_year"><i class="bi bi-calendar-date"></i> Año de publicación</label>
+        </div>
+        <div class="input-group mb-3">
+          <label for="createModalCategory" class="input-group-text"><i class="bi bi-tags"></i></label>
+          <select class="form-select" id="createModalCategory" required>
+            <option selected disabled value="">Selecciona categoría...</option>
+            <option value="fiction">Ficción</option>
+            <option value="fantasy">Fantasía</option>
+            <option value="thriller">Thriller</option>
+            <option value="classics">Clásicos</option>
+            <option value="poetry">Poesía</option>
+            <option value="history">Historia</option>
+          </select>
+          <div class="valid-feedback">
+            Categoría seleccionada
+          </div>
+          <div class="invalid-feedback">
+            Seleccione una opción valida
+          </div>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="createModalPath" placeholder="URL Imágen Portada" required>
+          <div class="valid-feedback">
+            Ruta aceptada
+          </div>
+          <div class="invalid-feedback" id="pathErrorMessage">
+            Debe ser una URL válida de imagen (http:// o https://) y terminar en .jpg, .jpeg, .png, .gif o .webp.
+          </div>
+          <label for="createModalPath"><i class="bi bi-link"></i> URL Imágen Portada</label>
+        </div>
+        <div class="form-floating">
+          <textarea class="form-control" placeholder="Sinopsis" id="createModalSynopsis" style="height: 300px" required></textarea>
+          <div class="valid-feedback">
+            Valor aceptado
+          </div>
+          <div class="invalid-feedback>
+            Campo requerido
+          </div>
+          <label for="createModalSynopsis"><i class="bi bi-blockquote-left"></i> Sinopsis</label>
+        </div>
+      </form>
+    
+  `;
+
+  modalFooter.innerHTML = `<button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+  <button type="submit" class="btn btn-primary" form="createFormBook" id="btnCreateBook">Crear</button>`;
+
+
+  document.getElementById("createFormBook").addEventListener("submit", function (event) {
+    const imageUrlInput = document.getElementById("createModalPath");
+    const imageUrl = imageUrlInput.value.trim();
+    const errorMessage = document.getElementById("pathErrorMessage");
+
+    // Expresión regular para validar una URL que realmente sea una imagen
+    const imageRegex = /^(https?:\/\/(?:[a-zA-Z0-9\-]+\.)+[a-zA-Z]{2,}(?:\/[^\s]*)*\.(?:jpeg|jpg|gif|png|webp))$/i;
+
+    // Resetear clases de validación
+    imageUrlInput.classList.remove("is-valid", "is-invalid");
+    errorMessage.style.display = "none"; // Ocultar mensaje de error
+
+    if (!imageUrl || !imageRegex.test(imageUrl)) {
+        // Si la URL está vacía o no es válida
+        event.preventDefault();
+        event.stopPropagation();
+        imageUrlInput.classList.add("is-invalid");
+        errorMessage.style.display = "block"; // Mostrar mensaje de error
+    } else {
+        // Si la URL es válida, marcar como válida
+        imageUrlInput.classList.add("is-valid");
+    }
+
+    // Validar el formulario completo
+    if (!this.checkValidity()) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
+
+    this.classList.add("was-validated");
+});
+
+
+
+   
+  
 }
 
 printAllBooks();
