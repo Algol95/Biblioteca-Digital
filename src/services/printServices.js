@@ -48,9 +48,12 @@ const modalFooter = document.getElementById("modalFooter");
  */
 const isAdminPage = window.location.pathname.includes("admin.html");
 
-document.getElementById("createBook").addEventListener("click", () => {
-  printCreateModal();
-})
+if(isAdminPage){
+  document.getElementById("createBook").addEventListener("click", () => {
+    printCreateModal();
+  })
+}
+
 
 /**
  * Imprime en el HTML una lista de la colección/array `books[]` pasada por parametro.
@@ -321,7 +324,7 @@ function printCreateModal(){
           </div>
         </div>
         <div class="form-floating mb-3">
-          <input type="text" class="form-control" id="createModalPath" placeholder="URL Imágen Portada" required>
+          <input type="url" class="form-control" id="createModalPath" placeholder="URL Imágen Portada" required>
           <div class="valid-feedback">
             Ruta aceptada
           </div>
@@ -335,7 +338,7 @@ function printCreateModal(){
           <div class="valid-feedback">
             Valor aceptado
           </div>
-          <div class="invalid-feedback>
+          <div class="invalid-feedback">
             Campo requerido
           </div>
           <label for="createModalSynopsis"><i class="bi bi-blockquote-left"></i> Sinopsis</label>
@@ -349,40 +352,42 @@ function printCreateModal(){
 
 
   document.getElementById("createFormBook").addEventListener("submit", function (event) {
+    event.preventDefault(); // Evita el envío hasta verificar validaciones
+    event.stopPropagation();
+
+    const form = this;
     const imageUrlInput = document.getElementById("createModalPath");
     const imageUrl = imageUrlInput.value.trim();
     const errorMessage = document.getElementById("pathErrorMessage");
 
-    // Expresión regular para validar una URL que realmente sea una imagen
-    const imageRegex = /^(https?:\/\/(?:[a-zA-Z0-9\-]+\.)+[a-zA-Z]{2,}(?:\/[^\s]*)*\.(?:jpeg|jpg|gif|png|webp))$/i;
+    // Expresión regular para validar URL de imagen
+    const imageRegex = /^(https?:\/\/.*\.(jpeg|jpg|gif|png|webp))$/i;
 
-    // Resetear clases de validación
-    imageUrlInput.classList.remove("is-valid", "is-invalid");
-    errorMessage.style.display = "none"; // Ocultar mensaje de error
-
-    if (!imageUrl || !imageRegex.test(imageUrl)) {
-        // Si la URL está vacía o no es válida
-        event.preventDefault();
-        event.stopPropagation();
+    // Validar el campo de la URL sin interferir con la validación general
+    if (!imageUrl) {
+        imageUrlInput.classList.remove("is-valid", "is-invalid");
+    } else if (!imageRegex.test(imageUrl)) {
         imageUrlInput.classList.add("is-invalid");
-        errorMessage.style.display = "block"; // Mostrar mensaje de error
+        imageUrlInput.classList.remove("is-valid");
+        errorMessage.style.display = "block"; 
     } else {
-        // Si la URL es válida, marcar como válida
         imageUrlInput.classList.add("is-valid");
+        imageUrlInput.classList.remove("is-invalid");
+        errorMessage.style.display = "none";
     }
 
-    // Validar el formulario completo
-    if (!this.checkValidity()) {
-        event.preventDefault();
-        event.stopPropagation();
+    // Remover la URL del proceso de validación automática
+    imageUrlInput.setCustomValidity(imageUrl && !imageRegex.test(imageUrl) ? "URL inválida" : "");
+
+    // Si todos los campos están validados, enviar formulario
+    if (form.checkValidity()) {
+        console.log("Formulario enviado correctamente");
+        // Aquí puedes enviar los datos al servidor o realizar otra acción
     }
 
-    this.classList.add("was-validated");
+    form.classList.add("was-validated"); // Aplica los estilos de validación de Bootstrap
 });
 
-
-
-   
   
 }
 
