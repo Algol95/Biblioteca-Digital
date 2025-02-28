@@ -148,6 +148,16 @@ margin: 1.4rem 0;
     cursor: pointer;
 }
 
+.sidebar__adminLink{
+    font-size: 1.2rem;
+    margin-top: 1.5rem;
+    padding: .5rem 1rem;
+    background-color: transparent;
+    color: var(--color-primary);
+    text-decoration: none;
+    cursor: pointer;
+}
+
 
 /*---------------MAIN STYLES---------------*/
 
@@ -223,6 +233,7 @@ footer p {
     .sidebar {
         padding-top: 1rem;
         padding-left: 2rem;
+        padding-bottom: 0;
         z-index: 9999;
         transition: .5s ease;
         transform: translateX(-100%);
