@@ -1,14 +1,14 @@
 {
   "books": [
     {
-      "id": "1",
       "title": "Cien años de soledad",
       "author": "Gabriel García Marquez",
-      "publish_year": 0,
+      "publish_year": "1",
       "category": "fiction",
       "synopsis": "Occaecat occaecat magna elit eiusmod. Duis nostrud excepteur mollit ipsum culpa laboris excepteur cupidatat consectetur aute. Ut magna consequat non aliqua non et do labore aliquip eu magna culpa in. Ad commodo sit voluptate qui qui cupidatat reprehenderit tempor duis. Nulla irure sunt laboris eu nulla occaecat minim incididunt proident sint esse. Sit elit anim veniam quis pariatur Lorem duis elit mollit culpa. Velit ex proident aliqua voluptate consequat veniam dolore officia cillum id. <br><br> Est enim laboris ad cupidatat anim elit non elit do adipisicing. Dolor ad ea ut culpa non culpa nulla incididunt nulla. Consectetur nisi exercitation ullamco ut sunt. Lorem deserunt esse ipsum ad irure in pariatur amet aute excepteur dolore. Officia mollit ea dolor ut. Do ullamco nulla velit consectetur occaecat quis. Aliqua ad ad aliquip nostrud commodo et duis laboris aute fugiat.",
       "cover_path": "https://covers.openlibrary.org/b/id/12627383-L.jpg",
-      "pdf_path": "../src/static/pdf/cien-anos-de-soledad.pdf"
+      "pdf_path": "../src/static/pdf/cien-anos-de-soledad.pdf",
+      "id": "1"
     },
     {
       "id": "2",
@@ -18,7 +18,7 @@
       "category": "fiction",
       "synopsis": "Una distopía política que examina el totalitarismo.",
       "cover_path": "https://covers.openlibrary.org/b/id/8745958-L.jpg",
-        "pdf_path": "../src/static/pdf/1984.pdf"
+      "pdf_path": "../src/static/pdf/1984.pdf"
     },
     {
       "id": "3",
@@ -27,8 +27,8 @@
       "publish_year": 1600,
       "category": "classics",
       "cover_path": "https://covers.openlibrary.org/b/id/14428305-L.jpg",
-        "synopsis": "La historia de un caballero que lucha contra molinos de viento.",
-        "pdf_path": "../src/static/pdf/don-quijote.pdf"
+      "synopsis": "La historia de un caballero que lucha contra molinos de viento.",
+      "pdf_path": "../src/static/pdf/don-quijote.pdf"
     },
     {
       "id": "4",
@@ -38,7 +38,7 @@
       "category": "classics",
       "synopsis": "Una novela sobre la vida en la década de 1920.",
       "cover_path": "https://covers.openlibrary.org/b/id/10590366-L.jpg",
-        "pdf_path": "../src/static/pdf/el-gran-gatsby.pdf"
+      "pdf_path": "../src/static/pdf/el-gran-gatsby.pdf"
     },
     {
       "id": "5",
@@ -48,7 +48,7 @@
       "category": "thriller",
       "synopsis": "Un thriller psicológico sobre un hombre y su familia atrapados en un hotel aislado.",
       "cover_path": "https://covers.openlibrary.org/b/id/12376585-L.jpg",
-        "pdf_path": "../src/static/pdf/el-resplandor.pdf"
+      "pdf_path": "../src/static/pdf/el-resplandor.pdf"
     },
     {
       "id": "6",
@@ -58,7 +58,7 @@
       "category": "fantasy",
       "synopsis": "La primera entrega de la famosa serie de fantasía.",
       "cover_path": "https://covers.openlibrary.org/b/id/276518-L.jpg",
-        "pdf_path": "../src/static/pdf/harry-potter-piedra-filosofal.pdf"
+      "pdf_path": "../src/static/pdf/harry-potter-piedra-filosofal.pdf"
     },
     {
       "id": "7",
@@ -68,7 +68,7 @@
       "category": "history",
       "synopsis": "La épica historia de la vuelta a casa de Odiseo.",
       "cover_path": "https://covers.openlibrary.org/b/id/12474938-L.jpg",
-        "pdf_path": "../src/static/pdf/la-odisea.pdf"
+      "pdf_path": "../src/static/pdf/la-odisea.pdf"
     },
     {
       "id": "8",
@@ -78,7 +78,77 @@
       "category": "poetry",
       "synopsis": "Una famosa obra poética que celebra la individualidad y la naturaleza.",
       "cover_path": "https://covers.openlibrary.org/b/id/9000447-L.jpg",
-        "pdf_path": "../src/static/pdf/hojas-de-hierba.pdf"
+      "pdf_path": "../src/static/pdf/hojas-de-hierba.pdf"
+    },
+    {
+      "title": "el mandango",
+      "author": "Condumio",
+      "publish_year": "1234",
+      "category": "fantasy",
+      "synopsis": "a",
+      "cover_path": "https://placehold.co/350x500.png",
+      "pdf_path": "./src/static/pdf/El-mandangon-de-Lorena",
+      "id": "3515"
+    },
+    {
+      "id": "c9f7",
+      "title": "a",
+      "author": "a",
+      "publish_year": "1213",
+      "category": "fantasy",
+      "synopsis": "a",
+      "cover_path": "https://placehold.co/600x400.png",
+      "pdf_path": "./src/static/pdf/a"
+    },
+    {
+      "id": "da16",
+      "title": "a",
+      "author": "a",
+      "publish_year": "23",
+      "category": "fantasy",
+      "synopsis": "qq",
+      "cover_path": "https://placehold.co/600x400.png",
+      "pdf_path": "./src/static/pdf/a"
+    },
+    {
+      "id": "210c",
+      "title": "prueba",
+      "author": "prueba",
+      "publish_year": "2",
+      "category": "fantasy",
+      "synopsis": "sd",
+      "cover_path": "https://placehold.co/600x400.png",
+      "pdf_path": "./src/static/pdf/prueba"
+    },
+    {
+      "id": "6495",
+      "title": "El mandangon de Lorena",
+      "author": "Condumio",
+      "publish_year": "123",
+      "category": "thriller",
+      "synopsis": "213",
+      "cover_path": "https://placehold.co/600x400.png",
+      "pdf_path": "./src/static/pdf/El-mandangon-de-Lorena"
+    },
+    {
+      "id": "4beb",
+      "title": "a",
+      "author": "a",
+      "publish_year": "123",
+      "category": "fantasy",
+      "synopsis": "a",
+      "cover_path": "https://placehold.co/600x400.png",
+      "pdf_path": "./src/static/pdf/a"
+    },
+    {
+      "title": "CIEN PIES HUMANO",
+      "author": "Leticia Sabater",
+      "publish_year": "324",
+      "category": "fantasy",
+      "synopsis": "a",
+      "cover_path": "https://placehold.co/600x400.png",
+      "pdf_path": "./src/static/pdf/CIEN-PIES-HUMANO",
+      "id": "4ddd"
     }
   ]
 }

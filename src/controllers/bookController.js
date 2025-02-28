@@ -24,7 +24,7 @@ export class Controller {
     async createBook(book) {
         try {
             const response = await axios.post(API_URL, book);
-            return response.data;
+            return response;
         } catch (error) {
             console.error("Error al crear el libro:", error.message);
         }
@@ -75,7 +75,7 @@ export class Controller {
     async updateBook(id, updatedBook) {
         try {
             const response = await axios.put(`${API_URL}/${id}`, updatedBook);
-            return response.data;
+            return response;
         } catch (error) {
             console.error(
                 `Error al actualizar el libro con ID ${id}:`,

@@ -1,7 +1,7 @@
 import { initPopovers } from "../utils/popover.js";
 import { initModals } from "../utils/modal.js";
 import { Controller } from "../controllers/bookController.js";
-import { updateBook } from "../services/bookServices.js";
+import { updateBook, createBook, deleteBook } from "../services/bookServices.js";
 import { getMetadata } from "../services/getMetadata.js";
 import { Book } from "../models/books.js";
 import { updateMetaBook } from "../services/bookServices.js";
@@ -132,17 +132,22 @@ export function printListBooks(booksArr) {
                 .getElementById("get" + book.id)
                 .addEventListener("click", () => {
                     printModalBook(book);
-                });
+            });
             document
                 .getElementById("upd" + book.id)
                 .addEventListener("click", () => {
                     printUpdModal(book);
-                });
+            });
             document
                 .getElementById("dwn" + book.id)
-                .addEventListener("click", function (event) {
+                .addEventListener("click", () => {
                     printModalMeta(book);
-                });
+            });
+            document
+                .getElementById("del" + book.id)
+                .addEventListener("click", () => {
+                    printDelModal(book);
+            });
         });
 
         initPopovers();
@@ -154,7 +159,7 @@ export function printListBooks(booksArr) {
                 "beforeend",
                 `<article class="books__card">
                         <img src="${book.cover_path}" alt="Portada ${book.title}"
-                            class="books__card__img" onerror="this.onerror=null; this.src='https://placehold.co/600x400';">
+                            class="books__card__img" onerror="this.onerror=null; this.src='https://placehold.co/350x500';">
                         <div class="books__card__body">
                             <h5>${book.title}</h5>
                             <p class="books__card__body__txt">${book.author}</p>
@@ -202,7 +207,7 @@ function printModalBook(book) {
     modalBody.innerHTML = `<div class="row">
     <div class="col-md">
       <img src="${book.cover_path}" alt="Portada ${book.title}"
-      class="img-fluid" onerror="this.onerror=null; this.src='https://placehold.co/600x400';">
+      class="img-fluid" onerror="this.onerror=null; this.src='https://placehold.co/350x500';">
     </div>
     <div class="col-md-8">
       <ul class="list-group">
@@ -238,7 +243,7 @@ function printUpdModal(book) {
           <i class="bi bi-file-image"></i> Portada
         </div>
         <div class="d-flex align-items-center">
-          <img src="${book.cover_path}" alt="Portada del libro" class="img-thumbnail me-2" style="width: 50px; height: auto;">
+          <img src="${book.cover_path}" alt="Portada del libro" class="img-thumbnail me-2" style="width: 50px; height: auto;" onerror="this.onerror=null; this.src='https://placehold.co/350x500';">
             <p class="text-break d-inline-block" style="max-width: 100%;">
             ${book.cover_path}
             </p>
@@ -341,8 +346,8 @@ async function printModalMeta(book) {
   modalFooter.innerHTML = `<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
   <button type="button" class="btn btn-primary" form="updFormBook" id="btnUpdMetaBook">Actualizar</button>`;
 
-  document.getElementById("btnUpdMetaBook").addEventListener("click", () => {
-    updateMetaBook(metaBookObj);
+  document.getElementById("btnUpdMetaBook").addEventListener("click", async () => {
+    const response = await updateMetaBook(metaBookObj);;
   });
 }
 
@@ -441,8 +446,8 @@ function printCreateModal(){
   modalFooter.innerHTML = `<button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
   <button type="submit" class="btn btn-primary" form="createFormBook" id="btnCreateBook">Crear</button>`;
 
-
-  document.getElementById("createFormBook").addEventListener("submit", function (event) {
+  
+  document.getElementById("createFormBook").addEventListener("submit", async function (event) {
     event.preventDefault();
     event.stopPropagation();
 
@@ -451,15 +456,17 @@ function printCreateModal(){
     const imageUrl = imageUrlInput.value.trim();
     const errorMessage = document.getElementById("pathErrorMessage");
 
-
     const imageRegex = /^(https?:\/\/.*\.(jpeg|jpg|gif|png|webp))$/i;
+
+    let formIsValid = true;  // Bandera de validación
 
     if (!imageUrl) {
         imageUrlInput.classList.remove("is-valid", "is-invalid");
     } else if (!imageRegex.test(imageUrl)) {
         imageUrlInput.classList.add("is-invalid");
         imageUrlInput.classList.remove("is-valid");
-        errorMessage.style.display = "block"; 
+        errorMessage.style.display = "block";
+        formIsValid = false;  // Marca como inválido
     } else {
         imageUrlInput.classList.add("is-valid");
         imageUrlInput.classList.remove("is-invalid");
@@ -467,10 +474,37 @@ function printCreateModal(){
     }
 
     imageUrlInput.setCustomValidity(imageUrl && !imageRegex.test(imageUrl) ? "URL inválida" : "");
+
     form.classList.add("was-validated");
+
+    if (formIsValid && form.checkValidity()) {
+        
+        try {
+            const response = await createBook();
+            if (response.status == 201) {
+                alert("Libro creado correctamente");
+                form.reset();  
+                form.classList.remove("was-validated");
+            } else {
+                alert("Error al crear el libro");
+            }
+        } catch (error) {
+            console.error("Error al enviar la solicitud:", error);
+        }
+    }
 });
 
-  
+}
+
+function printDelModal(book){
+  modalLabel.innerHTML = `<i class="bi bi-trash"></i> Borrar libro "${book.title}"</span>`;
+  modalBody.innerHTML = `<p>¿Estás segure de eliminar el libro <b class='text-danger'>"${book.title}"</b> con la id <b class='text-danger'>"${book.id}"</b></p>`
+  modalFooter.innerHTML = `<button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+  <button type="submit" class="btn btn-danger" id="btnDelBook">Borrar</button>`;
+
+  document.getElementById("btnDelBook").addEventListener("click", () => {
+    deleteBook(book.id);
+  })
 }
 
 printAllBooks();

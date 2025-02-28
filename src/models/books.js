@@ -21,15 +21,17 @@
      * @param {string} category 
      * @param {string} synopsis 
      * @param {string} cover_path 
+     * @param {string} pdf_path
      */
-    constructor(id, title, author, publish_year, category, synopsis, cover_path) {
-        this.id = id;
+    constructor(title, author, publish_year, category, synopsis, cover_path, pdf_path) {
+        
         this.title = title;
         this.author = author;
         this.publish_year = publish_year;
         this.category = category;
         this.synopsis = synopsis;
         this.cover_path = cover_path;
+        this.pdf_path = pdf_path;
     }
     
 }
