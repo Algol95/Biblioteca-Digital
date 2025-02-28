@@ -261,4 +261,9 @@ footer p {
     footer p{
         font-size: 1.2rem;
     }
+
+    .is-invalid-custom {
+        border-color: red !important;
+        box-shadow: 0 0 5px red !important;
+      }      
 }
