@@ -333,7 +333,7 @@ function printCreateModal(){
           </div>
           <label for="createModalPath"><i class="bi bi-link"></i> URL Imágen Portada</label>
         </div>
-        <div class="form-floating">
+        <div class="form-floating mb-3">
           <textarea class="form-control" placeholder="Sinopsis" id="createModalSynopsis" style="height: 300px" required></textarea>
           <div class="valid-feedback">
             Valor aceptado
@@ -343,6 +343,14 @@ function printCreateModal(){
           </div>
           <label for="createModalSynopsis"><i class="bi bi-blockquote-left"></i> Sinopsis</label>
         </div>
+        <!-- TODO: Aplicar input file
+          <div class="input-group mb-3">
+          <label for="createModalFile" class="input-group-text"><i class="bi bi-file-earmark-pdf"></i> PDF</label>
+          <input type="file" class="form-control" id="createModalFile" accept="application/pdf" required>
+          <div class="valid-feedback">Archivo válido</div>
+          <div class="invalid-feedback">Debes subir un archivo PDF</div>
+        </div>
+        -->
       </form>
     
   `;
@@ -352,7 +360,7 @@ function printCreateModal(){
 
 
   document.getElementById("createFormBook").addEventListener("submit", function (event) {
-    event.preventDefault(); // Evita el envío hasta verificar validaciones
+    event.preventDefault();
     event.stopPropagation();
 
     const form = this;
@@ -360,10 +368,9 @@ function printCreateModal(){
     const imageUrl = imageUrlInput.value.trim();
     const errorMessage = document.getElementById("pathErrorMessage");
 
-    // Expresión regular para validar URL de imagen
+
     const imageRegex = /^(https?:\/\/.*\.(jpeg|jpg|gif|png|webp))$/i;
 
-    // Validar el campo de la URL sin interferir con la validación general
     if (!imageUrl) {
         imageUrlInput.classList.remove("is-valid", "is-invalid");
     } else if (!imageRegex.test(imageUrl)) {
@@ -376,16 +383,8 @@ function printCreateModal(){
         errorMessage.style.display = "none";
     }
 
-    // Remover la URL del proceso de validación automática
     imageUrlInput.setCustomValidity(imageUrl && !imageRegex.test(imageUrl) ? "URL inválida" : "");
-
-    // Si todos los campos están validados, enviar formulario
-    if (form.checkValidity()) {
-        console.log("Formulario enviado correctamente");
-        // Aquí puedes enviar los datos al servidor o realizar otra acción
-    }
-
-    form.classList.add("was-validated"); // Aplica los estilos de validación de Bootstrap
+    form.classList.add("was-validated");
 });
 
   
