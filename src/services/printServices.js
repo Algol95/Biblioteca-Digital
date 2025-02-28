@@ -57,6 +57,7 @@ const isAdminPage = window.location.pathname.includes("admin.html");
  * @export
  * @param {books[]} booksArr
  * @modified Modificado para que detecte en que página está, index.html o admin.html, y devuelva la lista con una estructura HTML u otra. Se inicializan los popovers.
+ * Modificado para que se abra una nueva pestaña con el pdf en el evento click de los botones de visualización de libros.
  * @author {Nico Fernández}{Ángel Aragón}
  */
 export function printListBooks(booksArr) {
@@ -150,11 +151,23 @@ export function printListBooks(booksArr) {
                         <div class="books__card__body">
                             <h5>${book.title}</h5>
                             <p class="books__card__body__txt">${book.author}</p>
-                            <button class="books__card__body__btn btn"><i class="bi bi-book"></i> Leer Ahora</button>
+                            <button class="books__card__body__btn btn readButton" data-pdf="${book.pdf_path}"><i class="bi bi-book"></i> Leer Ahora</button>
                         </div>
                     </article>`
             );
+            
         });
+
+        grid.addEventListener("click", (event) => {
+          if (event.target.classList.contains("readButton")) {
+              const pdfUrl = event.target.dataset.pdf;
+              if (pdfUrl) {
+                  window.open(pdfUrl, "_blank"); // Abrir en nueva pestaña
+              } else {
+                  console.error("No se encontró la URL del PDF.");
+              }
+          }
+      });
     }
 }
 
