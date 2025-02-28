@@ -20,6 +20,7 @@ Una aplicación web que permite gestionar y leer libros en línea.
 - JSON Server
 
 ## 📁 Estructura del Proyecto
+```
 biblioteca-digital/
 ├── server/
 │   └── db.json              # Archivo de base de datos JSON
@@ -45,6 +46,7 @@ biblioteca-digital/
 │   └── views/
 │       └── admin.html      # Vista del panel de administración
 └── index.html              # Vista principal de la aplicación
+```
 
 ## 🚀 Comenzando
 
