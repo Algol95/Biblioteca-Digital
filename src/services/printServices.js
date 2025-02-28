@@ -307,7 +307,13 @@ function printUpdModal(book) {
  */
 async function printModalMeta(book) {
   modalBody.innerHTML = ""
-  const metaBook = await getMetadata(book.title, book.author);
+  const metaBook = await getMetadata(book.title);
+  console.log(metaBook);
+  if (!metaBook) {
+    modalBody.innerHTML = `<div class="alert alert-danger" role="alert">
+    No se encontraron metadatos para el libro seleccionado.</div>`;
+    return;
+  }
   const metaBookObj = new Book(
     book.id,
     metaBook.title,

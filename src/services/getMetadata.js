@@ -1,5 +1,5 @@
-export async function getMetadata(title, author) {
-    const API_URL = `https://openlibrary.org/search.json?title=${encodeURIComponent(title)}&author=${encodeURIComponent(author)}`;
+export async function getMetadata(title) {
+    const API_URL = `https://openlibrary.org/search.json?title=${encodeURIComponent(title)}`;
     try{
         const res = await axios.get(API_URL)
         const book = res.data.docs[0]

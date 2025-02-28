@@ -86,6 +86,7 @@ header {
     padding-left: 1.5rem;
     position: fixed;
     padding-top: 7rem;
+    padding-bottom: 8rem;
     border-right: 1px solid var(--color-border);
     width: 18.13rem;
     height: 100%;
@@ -136,6 +137,15 @@ margin: 1.4rem 0;
     border: none;
     background: transparent;
     width: 2.5rem;
+}
+
+.sidebar__viewButton{
+    margin-top: 1rem;
+    padding: .5rem 1rem;
+    background-color: transparent;
+    color: var(--color-primary);
+    border: none;
+    cursor: pointer;
 }
 
 
