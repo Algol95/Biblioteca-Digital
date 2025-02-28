@@ -1,3 +1,10 @@
+/**
+ * Obtiene los metadatos de un libro desde OpenLibrary a partir de su título.
+ * @author Nico
+ * @param {string} title - El título del libro a buscar.
+ * @returns {Promise<{title: string, author: string, publish_year: string|number, cover_path: string}>} 
+ * Un objeto con los metadatos del libro: título, autor, año de publicación y la URL de la carátula.
+ */
 export async function getMetadata(title) {
     const API_URL = `https://openlibrary.org/search.json?title=${encodeURIComponent(title)}`;
     try{
