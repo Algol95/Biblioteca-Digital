@@ -50,6 +50,9 @@ biblioteca-digital/
 
 ## 🚀 Comenzando
 
+> [!WARNING]
+> Para un correcto funcionamiento del proyecto, sigue las instrucciones de instalación antes de ejecutarlo, ya que Github Pages solo entrega archivos estaticos y no funciona JSON server.
+
 ### Requisitos previos
 
 - Node.js (última versión LTS)
