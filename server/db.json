@@ -79,8 +79,6 @@
       "synopsis": "Una famosa obra poética que celebra la individualidad y la naturaleza.",
       "cover_path": "https://covers.openlibrary.org/b/id/9000447-L.jpg",
       "pdf_path": "../src/static/pdf/hojas-de-hierba.pdf"
-<<<<<<< HEAD
-=======
     },
     {
       "title": "el mandango",
@@ -91,67 +89,6 @@
       "cover_path": "https://placehold.co/350x500.png",
       "pdf_path": "./src/static/pdf/El-mandangon-de-Lorena",
       "id": "3515"
-    },
-    {
-      "id": "c9f7",
-      "title": "a",
-      "author": "a",
-      "publish_year": "1213",
-      "category": "fantasy",
-      "synopsis": "a",
-      "cover_path": "https://placehold.co/600x400.png",
-      "pdf_path": "./src/static/pdf/a"
-    },
-    {
-      "id": "da16",
-      "title": "a",
-      "author": "a",
-      "publish_year": "23",
-      "category": "fantasy",
-      "synopsis": "qq",
-      "cover_path": "https://placehold.co/600x400.png",
-      "pdf_path": "./src/static/pdf/a"
-    },
-    {
-      "id": "210c",
-      "title": "prueba",
-      "author": "prueba",
-      "publish_year": "2",
-      "category": "fantasy",
-      "synopsis": "sd",
-      "cover_path": "https://placehold.co/600x400.png",
-      "pdf_path": "./src/static/pdf/prueba"
-    },
-    {
-      "id": "6495",
-      "title": "El mandangon de Lorena",
-      "author": "Condumio",
-      "publish_year": "123",
-      "category": "thriller",
-      "synopsis": "213",
-      "cover_path": "https://placehold.co/600x400.png",
-      "pdf_path": "./src/static/pdf/El-mandangon-de-Lorena"
-    },
-    {
-      "id": "4beb",
-      "title": "a",
-      "author": "a",
-      "publish_year": "123",
-      "category": "fantasy",
-      "synopsis": "a",
-      "cover_path": "https://placehold.co/600x400.png",
-      "pdf_path": "./src/static/pdf/a"
-    },
-    {
-      "title": "CIEN PIES HUMANO",
-      "author": "Leticia Sabater",
-      "publish_year": "324",
-      "category": "fantasy",
-      "synopsis": "a",
-      "cover_path": "https://placehold.co/600x400.png",
-      "pdf_path": "./src/static/pdf/CIEN-PIES-HUMANO",
-      "id": "4ddd"
->>>>>>> feature/AB-11-Modals-admin-menu
     }
   ]
 }
