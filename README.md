@@ -49,6 +49,9 @@ biblioteca-digital/
 
 ## 🚀 Comenzando
 
+> [!WARNING]
+> Para un correcto funcionamiento del proyecto, sigue las instrucciones de instalación antes de ejecutarlo, ya que Github Pages solo entrega archivos estaticos y no funciona JSON server.
+
 ### Requisitos previos
 
 - Node.js (última versión LTS)
@@ -58,7 +61,7 @@ biblioteca-digital/
 
 1. Clona el repositorio:
 ```bash
-git clone [url-del-repositorio]
+git clone https://github.com/Algol95/Biblioteca-Digital
 ```
 
 2. Instala las dependencias:
