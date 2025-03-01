@@ -12,12 +12,11 @@ Una aplicación web que permite gestionar y leer libros en línea.
 
 ## 🛠️ Tecnologías
 
-- HTML5
-- CSS3
-- JavaScript (ES6+)
-- Bootstrap 5.3.3
-- Axios
-- JSON Server
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)![Google Fonts Badge](https://img.shields.io/badge/Google%20Fonts-4285F4?logo=googlefonts&logoColor=fff&style=for-the-badge)![Git Badge](https://img.shields.io/badge/Git-F05032?logo=git&logoColor=fff&style=for-the-badge)![GitHub Badge](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=fff&style=for-the-badge)![Bootstrap Badge](https://img.shields.io/badge/Bootstrap-7952B3?logo=bootstrap&logoColor=fff&style=for-the-badge)![Pixabay Badge](https://img.shields.io/badge/Pixabay-2EC66D?logo=pixabay&logoColor=fff&style=for-the-badge)![vscode](https://img.shields.io/badge/vs%20code-0040a6?&logoColor=fff&style=for-the-badge&colorA=0040a6)![Node.js Badge](https://img.shields.io/badge/Node.js-5FA04E?logo=nodedotjs&logoColor=fff&style=for-the-badge)
+
+## 🎨 Diseño Figma
+
+[![Figma Badge](https://img.shields.io/badge/Figma-F24E1E?logo=figma&logoColor=fff&style=for-the-badge)](https://www.figma.com/proto/OKQ1DAllYB1Az4dns2CHrc/MyLibrary?node-id=2-3&p=f&t=xodwXS5V0VafB8LB-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1)
 
 ## 📁 Estructura del Proyecto
 ```
@@ -89,3 +88,8 @@ npm run api
 - Edita libros existentes
 - Elimina libros
 - Actualiza metadatos de libros desde OpenLibrary
+
+## Equipo de Desarrollo
+
+- [**Nico Fernández** - *@srlsrx*](https://github.com/srlsrx)
+- [**Ángel Miguel Aragón** - *@Algol95*](https://github.com/Algol95)

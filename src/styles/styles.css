@@ -44,7 +44,7 @@ header {
     margin-right: .4rem;
 }
 
-.header__search { /* TODO: Cambiar color del borde */
+.header__search { 
     height: 60%;
     width: 80%;
 }
@@ -95,11 +95,12 @@ header {
 
 .sidebar__search{
 display: none;
-margin: 1.4rem 0;
+margin: 1rem 0;
 }
 
 .sidebar__search-input{
     height: 3rem;
+    width: 80%;
 }
 
 .sidebar__search-addon{
@@ -127,7 +128,7 @@ margin: 1.4rem 0;
     cursor: pointer;
 }
 
-.sidebar__item:hover {
+.sidebar__item:hover, .sidebar__adminLink:hover {
     font-weight: 500;
 }
 
@@ -261,9 +262,5 @@ footer p {
     footer p{
         font-size: 1.2rem;
     }
-
-    .is-invalid-custom {
-        border-color: red !important;
-        box-shadow: 0 0 5px red !important;
-      }      
+ 
 }

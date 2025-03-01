@@ -85,7 +85,7 @@ export function printListBooks(booksArr) {
                   ${book.id}
                 </button>
               </td>
-              <td class="text-truncate" style="max-width: 100px;">${book.title}</td>
+              <td class="text-truncate" style="max-width: 80px;">${book.title}</td>
               <td>${book.author}</td>
               <td class="text-capitalize">${book.category}</td>
               <td class="d-grid gap-2 d-md-block">
@@ -101,7 +101,7 @@ export function printListBooks(booksArr) {
                   <i class="bi bi-pencil-square text-light"></i>
                 </button>
                 <button
-                  class="btn btn-primary btn--openModal"
+                  class="btn btn-secondary btn--openModal"
                   data-bs-toggle="popover"
                   data-bs-placement="left"
                   data-bs-trigger="hover focus"
@@ -315,7 +315,7 @@ function printUpdModal(book) {
  * @param {string} book.synopsis - Sinopsis del libro.
  * 
  * @returns {Promise<void>} - No retorna valor, actualiza el contenido del modal.
- * @author Nico Fernández
+ * @author {Nico Fernández}
  */
 async function printModalMeta(book) {
   modalBody.innerHTML = ""
@@ -359,7 +359,7 @@ async function printModalMeta(book) {
 
 
 /**
- * Función actualiza los datos de la ventana Modal con la visualización del objeto `Book` a actualizar y un formulario para actualizarlo.
+ * Función que abre un Modal con un formulario para generar un objeto book nuevo
  *
  * @param {object} book 
  * @author {Ángel Aragón}
@@ -464,7 +464,7 @@ function printCreateModal(){
 
     const imageRegex = /^(https?:\/\/.*\.(jpeg|jpg|gif|png|webp))$/i;
 
-    let formIsValid = true;  // Bandera de validación
+    let formIsValid = true;  
 
     if (!imageUrl) {
         imageUrlInput.classList.remove("is-valid", "is-invalid");
@@ -472,7 +472,7 @@ function printCreateModal(){
         imageUrlInput.classList.add("is-invalid");
         imageUrlInput.classList.remove("is-valid");
         errorMessage.style.display = "block";
-        formIsValid = false;  // Marca como inválido
+        formIsValid = false; 
     } else {
         imageUrlInput.classList.add("is-valid");
         imageUrlInput.classList.remove("is-invalid");
@@ -502,6 +502,12 @@ function printCreateModal(){
 
 }
 
+
+/**
+ * Función que abre un Modal, pidiendo permiso para borrar el libro pasado por parametro.
+ * @param {Book} book 
+ * @author {Ángel Aragón}
+ */
 function printDelModal(book){
   modalLabel.innerHTML = `<i class="bi bi-trash"></i> Borrar libro "${book.title}"</span>`;
   modalBody.innerHTML = `<p>¿Estás segure de eliminar el libro <b class='text-danger'>"${book.title}"</b> con la id <b class='text-danger'>"${book.id}"</b></p>`
