@@ -62,7 +62,7 @@ biblioteca-digital/
 
 1. Clona el repositorio:
 ```bash
-git clone [url-del-repositorio]
+git clone https://github.com/Algol95/Biblioteca-Digital
 ```
 
 2. Instala las dependencias:
