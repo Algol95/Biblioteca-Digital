@@ -9,6 +9,7 @@ Una aplicación web que permite gestionar y leer libros en línea.
 - Panel de administración para gestión de libros (operaciones CRUD)
 - Integración de metadatos con la API de OpenLibrary
 - Diseño adaptable
+- Cambio de tema (claro/oscuro) usando localStorage
 
 ## 🛠️ Tecnologías
 
