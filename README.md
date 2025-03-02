@@ -41,6 +41,7 @@ biblioteca-digital/
 │   │   └── index.css       # Estilos de la página principal
 │   ├── utils/
 │   │   ├── burgerMenu.js   # Funcionalidad del menú móvil
+│   │   ├── darkMode.js     # Cambio de tema
 │   │   ├── modal.js        # Utilidades de ventanas modales
 │   │   └── popover.js      # Funcionalidad de popovers
 │   └── views/
