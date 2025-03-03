@@ -5,6 +5,7 @@ import { updateBook } from "../services/bookServices.js";
 import { getMetadata } from "../services/getMetadata.js";
 import { Book } from "../models/books.js";
 import { updateMetaBook } from "../services/bookServices.js";
+import { darkModeListGroup, darkModeForm } from "../utils/darkMode.js";
 const bookController = new Controller();
 
 /**
@@ -192,6 +193,7 @@ export async function printAllBooks() {
  */
 function printModalBook(book) {
     modalLabel.innerHTML = `<i class="bi bi-book-half"></i> ${book.title}`;
+    modalBody.innerHTML = ``
     modalBody.innerHTML = `<div class="row">
     <div class="col-md">
       <img src="${book.cover_path}" alt="Portada ${book.title}"
@@ -207,6 +209,8 @@ function printModalBook(book) {
       </ul>
     </div>
   </div>`;
+
+  darkModeListGroup();
 }
 
 /**
@@ -285,6 +289,8 @@ function printUpdModal(book) {
     modalFooter.innerHTML = `<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
   <button type="button" class="btn btn-primary" form="updFormBook" id="btnUpdBook">Actualizar</button>`;
 
+    darkModeListGroup();
+    darkModeForm();
     document.getElementById("btnUpdBook").addEventListener("click", () => {
         updateBook(book);
     });
@@ -340,10 +346,10 @@ async function printModalMeta(book) {
   modalFooter.innerHTML = `<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
   <button type="button" class="btn btn-primary" form="updFormBook" id="btnUpdMetaBook">Actualizar</button>`;
 
+  darkModeListGroup();
   document.getElementById("btnUpdMetaBook").addEventListener("click", () => {
     updateMetaBook(metaBookObj);
   });
 }
-
 
 printAllBooks();
