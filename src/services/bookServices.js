@@ -56,7 +56,7 @@ document.querySelectorAll(".sidebar__item").forEach((item) => {
  * 
  * @async
  * @param {string} category La categoría por la cual filtrar los libros.
- * @returns {Promise<void>} Promesa que se resuelve cuando los libros filtrados son impresos.
+ * @returns {Promise<Book>} Promesa que se resuelve cuando los libros filtrados son impresos.
  * @author {Nico Fernández}
  * @modified Se añadió manejo de errores con try...catch para capturar posibles fallos en la obtención de los libros.
  */
@@ -78,7 +78,7 @@ async function filterByCategory(category) {
  *
  * @async
  * @param {string} title El título que se utilizará para filtrar los libros.
- * @returns {Promise<void>} Promesa que se resuelve cuando los libros filtrados son impresos.
+ * @returns {Promise<Book>} Promesa que se resuelve cuando los libros filtrados son impresos.
  * @author {Nico Fernández}
  * @modified Se añadió manejo de errores con try...catch para capturar posibles fallos en la obtención de los libros.
  */
@@ -94,20 +94,73 @@ export async function filterByTitle(title) {
     }
 }
 
+
+/**
+ * Función que crea un nuevo objeto `Book` con los valores del modal.
+ * Si están vacías, el valor es el el que tenía el libro por defecto.
+ *
+ * @export
+ * @async
+ * @param {book} book 
+ * @return {Promise<Book>}
+ * @author {Ángel Aragón}
+ */
 export async function updateBook(book) {
     const updBook = new Book(
-        book.id,
+        
         document.getElementById("updModalTitle").value ? document.getElementById("updModalTitle").value : book.title,
         document.getElementById("updModalAuthor").value ? document.getElementById("updModalAuthor").value : book.author,
         document.getElementById("updModalPublish_year").value ? document.getElementById("updModalPublish_year").value : book.publish_year,
         document.getElementById("updModalCategory").value ? document.getElementById("updModalCategory").value : book.category,
         document.getElementById("updModalSynopsis").value ? document.getElementById("updModalSynopsis").value : book.synopsis,
         document.getElementById("updModalPath").value ? document.getElementById("updModalPath").value : book.cover_path,
+        book.pdf_path
     )
-    console.log(updBook);
     const response = await bookController.updateBook(book.id, updBook);
-    console.log(response);
+    return response;
+}
 
+/**
+ * Función que crea un nuevo objeto `Book` con los valores del modal y lo sube a BD.
+ *
+ * @export
+ * @async
+ * @param {book} book 
+ * @return {Promise<Book>}
+ * @author {Ángel Aragón}
+ */
+export async function createBook() {
+    const title = document.getElementById("createModalTitle").value;
+    const pdfPath = "./src/static/pdf/"+title.replace(/\s+/g, "-");
+
+    console.log(pdfPath)
+    
+    const newBook = new Book(
+        document.getElementById("createModalTitle").value,
+        document.getElementById("createModalAuthor").value,
+        document.getElementById("createModalPublish_year").value,
+        document.getElementById("createModalCategory").value,
+        document.getElementById("createModalSynopsis").value,
+        document.getElementById("createModalPath").value,
+        pdfPath
+    )
+    const response = await bookController.createBook(newBook);
+    return response;
+}
+
+
+/**
+ * Función que llama al metodo `deleteBook(id)` para eliminar un libro de BD
+ *
+ * @export
+ * @async
+ * @param {string} id 
+ * @returns {Promise<Book>} 
+ * @author {Ángel Aragón}
+ */
+export async function deleteBook(id) {
+    const response = await bookController.deleteBook(id);
+    return response;
 }
 
 /**
@@ -127,11 +180,13 @@ export async function updateBook(book) {
  * @returns {Promise<void>} - No retorna valor, pero registra la respuesta en la consola.
  * 
  * @modified Se agregó el log de la respuesta para depuración.
- * @author Nico Fernández
+ * @author {Nico Fernández}
  */
 export async function updateMetaBook(book) {
     try {
         const response = await bookController.updateBook(book.id, book);
+        console.log(response)
+        return response
     }
     catch (error) {
         console.error(`Error al actualizar los metadatos del libro: ${error.message}`);

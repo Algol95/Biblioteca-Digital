@@ -1,7 +1,7 @@
 import { initPopovers } from "../utils/popover.js";
 import { initModals } from "../utils/modal.js";
 import { Controller } from "../controllers/bookController.js";
-import { updateBook } from "../services/bookServices.js";
+import { updateBook, createBook, deleteBook } from "../services/bookServices.js";
 import { getMetadata } from "../services/getMetadata.js";
 import { Book } from "../models/books.js";
 import { updateMetaBook } from "../services/bookServices.js";
@@ -52,6 +52,13 @@ const modalFooter = document.getElementById("modalFooter");
  */
 const isAdminPage = window.location.pathname.includes("admin.html");
 
+if(isAdminPage){
+  document.getElementById("createBook").addEventListener("click", () => {
+    printCreateModal();
+  })
+}
+
+
 /**
  * Imprime en el HTML una lista de la colección/array `books[]` pasada por parametro.
  *
@@ -79,7 +86,7 @@ export function printListBooks(booksArr) {
                   ${book.id}
                 </button>
               </td>
-              <td class="text-truncate" style="max-width: 100px;">${book.title}</td>
+              <td class="text-truncate" style="max-width: 80px;">${book.title}</td>
               <td>${book.author}</td>
               <td class="text-capitalize">${book.category}</td>
               <td class="d-grid gap-2 d-md-block">
@@ -95,7 +102,7 @@ export function printListBooks(booksArr) {
                   <i class="bi bi-pencil-square text-light"></i>
                 </button>
                 <button
-                  class="btn btn-primary btn--openModal"
+                  class="btn btn-secondary btn--openModal"
                   data-bs-toggle="popover"
                   data-bs-placement="left"
                   data-bs-trigger="hover focus"
@@ -126,17 +133,22 @@ export function printListBooks(booksArr) {
                 .getElementById("get" + book.id)
                 .addEventListener("click", () => {
                     printModalBook(book);
-                });
+            });
             document
                 .getElementById("upd" + book.id)
-                .addEventListener("click", function (event) {
+                .addEventListener("click", () => {
                     printUpdModal(book);
-                });
+            });
             document
                 .getElementById("dwn" + book.id)
-                .addEventListener("click", function (event) {
+                .addEventListener("click", () => {
                     printModalMeta(book);
-                });
+            });
+            document
+                .getElementById("del" + book.id)
+                .addEventListener("click", () => {
+                    printDelModal(book);
+            });
         });
 
         initPopovers();
@@ -148,7 +160,7 @@ export function printListBooks(booksArr) {
                 "beforeend",
                 `<article class="books__card">
                         <img src="${book.cover_path}" alt="Portada ${book.title}"
-                            class="books__card__img" onerror="this.onerror=null; this.src='https://placehold.co/600x400';">
+                            class="books__card__img" onerror="this.onerror=null; this.src='https://placehold.co/350x500';">
                         <div class="books__card__body">
                             <h5>${book.title}</h5>
                             <p class="books__card__body__txt">${book.author}</p>
@@ -197,7 +209,7 @@ function printModalBook(book) {
     modalBody.innerHTML = `<div class="row">
     <div class="col-md">
       <img src="${book.cover_path}" alt="Portada ${book.title}"
-      class="img-fluid" onerror="this.onerror=null; this.src='https://placehold.co/600x400';">
+      class="img-fluid" onerror="this.onerror=null; this.src='https://placehold.co/350x500';">
     </div>
     <div class="col-md-8">
       <ul class="list-group">
@@ -235,7 +247,7 @@ function printUpdModal(book) {
           <i class="bi bi-file-image"></i> Portada
         </div>
         <div class="d-flex align-items-center">
-          <img src="${book.cover_path}" alt="Portada del libro" class="img-thumbnail me-2" style="width: 50px; height: auto;">
+          <img src="${book.cover_path}" alt="Portada del libro" class="img-thumbnail me-2" style="width: 50px; height: auto;" onerror="this.onerror=null; this.src='https://placehold.co/350x500';">
             <p class="text-break d-inline-block" style="max-width: 100%;">
             ${book.cover_path}
             </p>
@@ -309,7 +321,7 @@ function printUpdModal(book) {
  * @param {string} book.synopsis - Sinopsis del libro.
  * 
  * @returns {Promise<void>} - No retorna valor, actualiza el contenido del modal.
- * @author Nico Fernández
+ * @author {Nico Fernández}
  */
 async function printModalMeta(book) {
   modalBody.innerHTML = ""
@@ -346,10 +358,171 @@ async function printModalMeta(book) {
   modalFooter.innerHTML = `<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
   <button type="button" class="btn btn-primary" form="updFormBook" id="btnUpdMetaBook">Actualizar</button>`;
 
-  darkModeListGroup();
-  document.getElementById("btnUpdMetaBook").addEventListener("click", () => {
-    updateMetaBook(metaBookObj);
+  document.getElementById("btnUpdMetaBook").addEventListener("click", async () => {
+    const response = await updateMetaBook(metaBookObj);;
   });
+}
+
+
+/**
+ * Función que abre un Modal con un formulario para generar un objeto book nuevo
+ *
+ * @param {object} book 
+ * @author {Ángel Aragón}
+ */
+function printCreateModal(){
+  modalLabel.innerHTML = `<i class="bi bi-database-add"></i> Crear nuevo libro</span>`;
+  modalBody.innerHTML = `
+      <form id="createFormBook" class="needs-validation" novalidate> 
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="createModalTitle" required
+          placeholder="Título">
+          <div class="valid-feedback">
+            Título aceptado
+          </div>
+          <div class="invalid-feedback">
+            El campo no puede estar vacío
+          </div>
+          <label for="createModalTitle"><i class="bi bi-book"></i> Título</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="createModalAuthor" placeholder="Autor" required>
+          <div class="valid-feedback">
+            Valor aceptado
+          </div>
+          <div class="invalid-feedback">
+            El campo no puede estar vacío
+          </div>
+          <label for="createModalAuthor"><i class="bi bi-person"></i> Autor</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="number" class="form-control" id="createModalPublish_year" placeholder="Año de publicación" required>
+          <div class="valid-feedback">
+            Valor aceptado
+          </div>
+          <div class="invalid-feedback">
+            El valor es requerido
+          </div>
+          <label for="createModalPublish_year"><i class="bi bi-calendar-date"></i> Año de publicación</label>
+        </div>
+        <div class="input-group mb-3">
+          <label for="createModalCategory" class="input-group-text"><i class="bi bi-tags"></i></label>
+          <select class="form-select" id="createModalCategory" required>
+            <option selected disabled value="">Selecciona categoría...</option>
+            <option value="fiction">Ficción</option>
+            <option value="fantasy">Fantasía</option>
+            <option value="thriller">Thriller</option>
+            <option value="classics">Clásicos</option>
+            <option value="poetry">Poesía</option>
+            <option value="history">Historia</option>
+          </select>
+          <div class="valid-feedback">
+            Categoría seleccionada
+          </div>
+          <div class="invalid-feedback">
+            Seleccione una opción valida
+          </div>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="url" class="form-control" id="createModalPath" placeholder="URL Imágen Portada" required>
+          <div class="valid-feedback">
+            Ruta aceptada
+          </div>
+          <div class="invalid-feedback" id="pathErrorMessage">
+            Debe ser una URL válida de imagen (http:// o https://) y terminar en .jpg, .jpeg, .png, .gif o .webp.
+          </div>
+          <label for="createModalPath"><i class="bi bi-link"></i> URL Imágen Portada</label>
+        </div>
+        <div class="form-floating mb-3">
+          <textarea class="form-control" placeholder="Sinopsis" id="createModalSynopsis" style="height: 300px" required></textarea>
+          <div class="valid-feedback">
+            Valor aceptado
+          </div>
+          <div class="invalid-feedback">
+            Campo requerido
+          </div>
+          <label for="createModalSynopsis"><i class="bi bi-blockquote-left"></i> Sinopsis</label>
+        </div>
+        <!-- TODO: Aplicar input file
+          <div class="input-group mb-3">
+          <label for="createModalFile" class="input-group-text"><i class="bi bi-file-earmark-pdf"></i> PDF</label>
+          <input type="file" class="form-control" id="createModalFile" accept="application/pdf" required>
+          <div class="valid-feedback">Archivo válido</div>
+          <div class="invalid-feedback">Debes subir un archivo PDF</div>
+        </div>
+        -->
+      </form>
+    
+  `;
+
+  modalFooter.innerHTML = `<button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+  <button type="submit" class="btn btn-primary" form="createFormBook" id="btnCreateBook">Crear</button>`;
+
+  
+  document.getElementById("createFormBook").addEventListener("submit", async function (event) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const form = this;
+    const imageUrlInput = document.getElementById("createModalPath");
+    const imageUrl = imageUrlInput.value.trim();
+    const errorMessage = document.getElementById("pathErrorMessage");
+
+    const imageRegex = /^(https?:\/\/.*\.(jpeg|jpg|gif|png|webp))$/i;
+
+    let formIsValid = true;  
+
+    if (!imageUrl) {
+        imageUrlInput.classList.remove("is-valid", "is-invalid");
+    } else if (!imageRegex.test(imageUrl)) {
+        imageUrlInput.classList.add("is-invalid");
+        imageUrlInput.classList.remove("is-valid");
+        errorMessage.style.display = "block";
+        formIsValid = false; 
+    } else {
+        imageUrlInput.classList.add("is-valid");
+        imageUrlInput.classList.remove("is-invalid");
+        errorMessage.style.display = "none";
+    }
+
+    imageUrlInput.setCustomValidity(imageUrl && !imageRegex.test(imageUrl) ? "URL inválida" : "");
+
+    form.classList.add("was-validated");
+
+    if (formIsValid && form.checkValidity()) {
+        
+        try {
+            const response = await createBook();
+            if (response.status == 201) {
+                alert("Libro creado correctamente");
+                form.reset();  
+                form.classList.remove("was-validated");
+            } else {
+                alert("Error al crear el libro");
+            }
+        } catch (error) {
+            console.error("Error al enviar la solicitud:", error);
+        }
+    }
+});
+
+}
+
+
+/**
+ * Función que abre un Modal, pidiendo permiso para borrar el libro pasado por parametro.
+ * @param {Book} book 
+ * @author {Ángel Aragón}
+ */
+function printDelModal(book){
+  modalLabel.innerHTML = `<i class="bi bi-trash"></i> Borrar libro "${book.title}"</span>`;
+  modalBody.innerHTML = `<p>¿Estás segure de eliminar el libro <b class='text-danger'>"${book.title}"</b> con la id <b class='text-danger'>"${book.id}"</b></p>`
+  modalFooter.innerHTML = `<button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+  <button type="submit" class="btn btn-danger" id="btnDelBook">Borrar</button>`;
+
+  document.getElementById("btnDelBook").addEventListener("click", () => {
+    deleteBook(book.id);
+  })
 }
 
 printAllBooks();

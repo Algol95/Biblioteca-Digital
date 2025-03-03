@@ -1,14 +1,14 @@
 {
   "books": [
     {
-      "id": "1",
       "title": "Cien años de soledad",
       "author": "Gabriel García Marquez",
-      "publish_year": 0,
+      "publish_year": "1",
       "category": "fiction",
       "synopsis": "Occaecat occaecat magna elit eiusmod. Duis nostrud excepteur mollit ipsum culpa laboris excepteur cupidatat consectetur aute. Ut magna consequat non aliqua non et do labore aliquip eu magna culpa in. Ad commodo sit voluptate qui qui cupidatat reprehenderit tempor duis. Nulla irure sunt laboris eu nulla occaecat minim incididunt proident sint esse. Sit elit anim veniam quis pariatur Lorem duis elit mollit culpa. Velit ex proident aliqua voluptate consequat veniam dolore officia cillum id. <br><br> Est enim laboris ad cupidatat anim elit non elit do adipisicing. Dolor ad ea ut culpa non culpa nulla incididunt nulla. Consectetur nisi exercitation ullamco ut sunt. Lorem deserunt esse ipsum ad irure in pariatur amet aute excepteur dolore. Officia mollit ea dolor ut. Do ullamco nulla velit consectetur occaecat quis. Aliqua ad ad aliquip nostrud commodo et duis laboris aute fugiat.",
       "cover_path": "https://covers.openlibrary.org/b/id/12627383-L.jpg",
-      "pdf_path": "../src/static/pdf/cien-anos-de-soledad.pdf"
+      "pdf_path": "../src/static/pdf/cien-anos-de-soledad.pdf",
+      "id": "1"
     },
     {
       "id": "2",
@@ -17,7 +17,8 @@
       "publish_year": "1949",
       "category": "fiction",
       "synopsis": "Una distopía política que examina el totalitarismo.",
-      "cover_path": "https://covers.openlibrary.org/b/id/8745958-L.jpg"
+      "cover_path": "https://covers.openlibrary.org/b/id/8745958-L.jpg",
+      "pdf_path": "../src/static/pdf/1984.pdf"
     },
     {
       "id": "3",
@@ -77,6 +78,16 @@
       "synopsis": "Una famosa obra poética que celebra la individualidad y la naturaleza.",
       "cover_path": "https://covers.openlibrary.org/b/id/9000447-L.jpg",
       "pdf_path": "../src/static/pdf/hojas-de-hierba.pdf"
+    },
+    {
+      "title": "el mandango",
+      "author": "Condumio",
+      "publish_year": "1234",
+      "category": "fantasy",
+      "synopsis": "a",
+      "cover_path": "https://placehold.co/350x500.png",
+      "pdf_path": "./src/static/pdf/El-mandangon-de-Lorena",
+      "id": "3515"
     }
   ]
 }
