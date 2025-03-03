@@ -1,3 +1,11 @@
+/**
+ * @file bookService.js
+ * @description Este archivo contiene funciones para tratar los datos entre Cliente-Servidor.
+ * @author {Nico Fernández}
+ * @version 1.0.0
+ */
+
+
 import * as printServices from "./printServices.js";
 /**
  * Se importa la clase `Controller` desde el archivo `bookController.js`.

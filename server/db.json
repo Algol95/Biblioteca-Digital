@@ -64,11 +64,10 @@
       "id": "7",
       "title": "La Odisea",
       "author": "Homero",
-      "publish_year": 1946,
+      "publish_year": 2014,
       "category": "history",
       "synopsis": "La épica historia de la vuelta a casa de Odiseo.",
-      "cover_path": "https://covers.openlibrary.org/b/id/12474938-L.jpg",
-      "pdf_path": "../src/static/pdf/la-odisea.pdf"
+      "cover_path": "https://covers.openlibrary.org/b/id/13180792-L.jpg"
     },
     {
       "id": "8",

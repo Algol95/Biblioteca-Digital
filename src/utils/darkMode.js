@@ -1,4 +1,12 @@
 /**
+ * @file darkMode.js
+ * @description Este archivo contiene funciones para manejar el tema oscuro en Bootstrap.
+ * @author {Nico Fernández}
+ * @version 1.0.1
+ */
+
+
+/**
  * Elemento del botón de cambio de tema.
  * @type {HTMLElement}
  */
@@ -95,7 +103,8 @@ function applyTheme(theme) {
 
 /**
  * Actualiza el tema de Bootstrap en función del tema seleccionado.
- * @param {string} theme - Tema seleccionado ("light" o "dark").
+ * @param {string} theme - Tema seleccionado (`light` o `dark`).
+ * @author {Nico Fernández}
  */
 function updateBootstrapTheme(theme) {
     const isDark = theme === "dark";
@@ -141,4 +150,45 @@ function updateBootstrapTheme(theme) {
             modal.style.borderColor = "";
         }
     });
+}
+
+
+/**
+ * Función que convierte el tema los `list-group` a `dark`
+ * @author {Ángel Aragón}
+ * @export
+ */
+export function darkModeListGroup() {
+    const currentTheme = localStorage.getItem("theme");
+    const listGroups = document.querySelectorAll(".list-group")
+    if (currentTheme === "dark") {
+        listGroups.forEach(list => {
+            list.setAttribute("data-bs-theme", "dark");
+            
+        });
+    } else {
+      listGroups.forEach(list => {
+        list.setAttribute("data-bs-theme", "light");
+      });
+    }
+}
+
+
+/**
+ * Función que convierte el tema los formularios a `dark`
+ * @author {Ángel Aragón}
+ * @export
+ */
+export function darkModeForm() {
+    const currentTheme = localStorage.getItem("theme");
+    const forms = document.querySelectorAll("form")
+    if (currentTheme === "dark") {
+        forms.forEach(form => {
+            form.setAttribute("data-bs-theme", "dark");
+        });
+    } else {
+      forms.forEach(form => {
+        form.setAttribute("data-bs-theme", "light");
+      });
+    }
 }
