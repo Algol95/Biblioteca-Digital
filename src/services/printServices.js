@@ -5,7 +5,7 @@ import { updateBook, createBook, deleteBook } from "../services/bookServices.js"
 import { getMetadata } from "../services/getMetadata.js";
 import { Book } from "../models/books.js";
 import { updateMetaBook } from "../services/bookServices.js";
-import { darkModeListGroup, darkModeForm } from "../utils/darkMode.js";
+import { darkModeListGroup, darkModeForm} from "../utils/darkMode.js";
 const bookController = new Controller();
 
 /**
@@ -79,7 +79,6 @@ export function printListBooks(booksArr) {
                   class="btn btn-outline-primary btn--openModal"
                   data-bs-toggle="popover"
                   data-bs-trigger="hover focus"
-                  data-bs-title="Visualizar libro"
                   data-bs-content="Abre una ventana modal para visualizar todos los datos de este libro."
                   id="get${book.id}"
                 >
@@ -95,7 +94,6 @@ export function printListBooks(booksArr) {
                   data-bs-toggle="popover"
                   data-bs-placement="left"
                   data-bs-trigger="hover focus"
-                  data-bs-title="Editar libro"
                   data-bs-content="Abre una ventana modal para editar este libro."
                   id="upd${book.id}"
                 >
@@ -106,7 +104,6 @@ export function printListBooks(booksArr) {
                   data-bs-toggle="popover"
                   data-bs-placement="left"
                   data-bs-trigger="hover focus"
-                  data-bs-title="Buscar Metadatos"
                   data-bs-content="Busca la información del libro en la API de OpenLibrary."
                   id="dwn${book.id}"
                 >
@@ -117,7 +114,6 @@ export function printListBooks(booksArr) {
                   data-bs-toggle="popover"
                   data-bs-placement="left"
                   data-bs-trigger="hover focus"
-                  data-bs-title="Borrar libro"
                   data-bs-content="Abre una ventana modal para borrar este libro de la base de datos."
                   id="del${book.id}"
                   >
@@ -358,8 +354,9 @@ async function printModalMeta(book) {
   modalFooter.innerHTML = `<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
   <button type="button" class="btn btn-primary" form="updFormBook" id="btnUpdMetaBook">Actualizar</button>`;
 
+  darkModeListGroup();
   document.getElementById("btnUpdMetaBook").addEventListener("click", async () => {
-    const response = await updateMetaBook(metaBookObj);;
+    const response = await updateMetaBook(metaBookObj);
   });
 }
 
@@ -458,7 +455,7 @@ function printCreateModal(){
   modalFooter.innerHTML = `<button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
   <button type="submit" class="btn btn-primary" form="createFormBook" id="btnCreateBook">Crear</button>`;
 
-  
+  darkModeForm();
   document.getElementById("createFormBook").addEventListener("submit", async function (event) {
     event.preventDefault();
     event.stopPropagation();

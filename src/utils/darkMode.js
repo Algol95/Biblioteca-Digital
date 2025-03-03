@@ -152,12 +152,19 @@ function updateBootstrapTheme(theme) {
     });
 }
 
+
+/**
+ * Función que convierte el tema los `list-group` a `dark`
+ * @author {Ángel Aragón}
+ * @export
+ */
 export function darkModeListGroup() {
     const currentTheme = localStorage.getItem("theme");
     const listGroups = document.querySelectorAll(".list-group")
     if (currentTheme === "dark") {
         listGroups.forEach(list => {
             list.setAttribute("data-bs-theme", "dark");
+            
         });
     } else {
       listGroups.forEach(list => {
@@ -166,6 +173,12 @@ export function darkModeListGroup() {
     }
 }
 
+
+/**
+ * Función que convierte el tema los formularios a `dark`
+ * @author {Ángel Aragón}
+ * @export
+ */
 export function darkModeForm() {
     const currentTheme = localStorage.getItem("theme");
     const forms = document.querySelectorAll("form")
